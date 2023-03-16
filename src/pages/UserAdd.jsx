@@ -45,7 +45,7 @@ const UserAdd = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/users", user);
+      await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/useradd", user);
       navigate("/UserInfomation");
       MySwal.fire({
         html: <i>User has been added successfully!</i>,
