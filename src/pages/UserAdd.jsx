@@ -156,23 +156,6 @@ const UserAdd = () => {
                   </Form.Group>
                 </Col>
                 <Col lg={4} md={12} sm={12}>
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label
-                      className="label mt-2"
-                      style={{ color: "#000" }}
-                    >
-                      Email <span className="text-danger">*</span>
-                    </Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      onChange={handleChange}
-                      className="w-100"
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col lg={4} md={12} sm={12}>
                   <Form.Group controlId="formBasicPhone">
                     <Form.Label
                       className="label mt-2"
@@ -191,6 +174,24 @@ const UserAdd = () => {
                     />
                   </Form.Group>
                 </Col>
+                <Col lg={4} md={12} sm={12}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label
+                      className="label mt-2"
+                      style={{ color: "#000" }}
+                    >
+                      Email <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      onChange={handleChange}
+                      className="w-100"
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+                
               </Row>
 
               <Row className="mb-3">
