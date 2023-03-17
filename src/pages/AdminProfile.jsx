@@ -28,7 +28,7 @@ function AdminProfile() {
 
 	const fecthAllAdmin = async () => {
 		try {
-			const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/admin");
+			const res = await axios.get("http://localhost:3333/admin");
 			setAdmin(res.data);
 			await parseJwt(token);
 			profilesAuth(res.data, parseJwt(token));

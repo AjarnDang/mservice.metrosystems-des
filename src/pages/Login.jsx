@@ -16,7 +16,7 @@ function Login() {
         username: data.get('username'),
         password: data.get('password'),
     }
-    fetch("https://charming-goat-flannel-nightgown.cyclic.app/login", {
+    fetch("http://localhost:3333/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

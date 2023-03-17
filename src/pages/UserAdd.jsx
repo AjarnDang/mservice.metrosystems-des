@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
 import { Box, TextField, useTheme, Link } from "@mui/material";
+import * as yup from "yup";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import axios from "axios";
 
@@ -44,7 +45,7 @@ const UserAdd = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/useradd", user);
+      await axios.post("http://localhost:3333/useradd", user);
       navigate("/UserInfomation");
       MySwal.fire({
         html: <i>User has been added successfully!</i>,

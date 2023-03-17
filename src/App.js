@@ -17,13 +17,13 @@ import AdminUpdate from './pages/AdminUpdate';
 import UserInfomation from './pages/UserInfomation';
 import UserUpdate from './pages/UserUpdate';
 import UserAdd from './pages/UserAdd';
+import QrCodeGenerator from './pages/QrCodeGenerator';
 
 
 function App() {
   const [theme, colorMode] = useMode();
   return (
-    <>
-   
+    <>   
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />  
@@ -38,7 +38,8 @@ function App() {
               <Route path="/adminsettings" element={<AdminSettings />} />
               <Route path="/adminprofile" element={<AdminProfile />} />
               <Route path="/adminadd" element={<AdminAdd />} />
-              <Route path="/adminupdate/:id" element={<AdminUpdate />} />      
+              <Route path="/adminupdate/:id" element={<AdminUpdate />} /> 
+              <Route path="/qrcodegenerator" element={<QrCodeGenerator />} />      
             </Routes>         
         </ThemeProvider>
       </ColorModeContext.Provider>

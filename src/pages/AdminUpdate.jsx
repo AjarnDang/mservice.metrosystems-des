@@ -44,8 +44,8 @@ function AdminUpdate() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/admin/"+adminId, admin);
-      navigate("/AdminAdd");
+      await axios.put("http://localhost:3333/updateadmin/"+adminId, admin);
+      navigate("/adminsettings");
       MySwal.fire({
         html: <i>Admin has been updated successfully!</i>,
         icon: "success",
@@ -63,7 +63,7 @@ function AdminUpdate() {
   const [admindetail, setAdmindetail] = useState([]);
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://charming-goat-flannel-nightgown.cyclic.app/admin/${id}`);
+      const res = await axios.get(`http://localhost:3333/admin/${id}`);
       setAdmindetail(res.data.data);
       console.log(res.data);
     } catch (err) {
@@ -117,9 +117,7 @@ function AdminUpdate() {
                       type="password"
                       name="password"
                       placeholder="xxxxxxxx"
-                      onChange={handleChange}
-                      value={admindetail.password}
-                      required
+                      onChange={handleChange}               
                     />
                   </Form.Group>
                 </Col>

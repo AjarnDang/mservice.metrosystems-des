@@ -36,7 +36,7 @@ const UserInfomation = () => {
   useEffect(() => {
     const fecthAllUser = async () => {
       try {
-        const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/users");
+        const res = await axios.get("http://localhost:3333/users");
         setUser(res.data);
       } catch (err) {
         console.log(err);
@@ -48,7 +48,7 @@ const UserInfomation = () => {
   //Delete User
   const handleDelete = async (id) => {
     try {
-      await axios.delete("https://charming-goat-flannel-nightgown.cyclic.app/deleteuser/"+ id);
+      await axios.delete("http://localhost:3333/deleteuser/"+ id);
       MySwal.fire({
         html: <i>User has been deleted successfully!</i>,
         icon: "success",
