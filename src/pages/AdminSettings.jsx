@@ -37,7 +37,7 @@ function AdminSettings() {
   //Delete admin
   const handleDelete = async (id) => {
     try {
-      await axios.delete("https://charming-goat-flannel-nightgown.cyclic.app/admin/" +id);
+      await axios.delete("https://charming-goat-flannel-nightgown.cyclic.app/deleteadmin/" +id);
       MySwal.fire({
         html: <i>Admin has been added successfully!</i>,
         icon: "success",

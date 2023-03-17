@@ -49,7 +49,7 @@ const UserUpdate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/usersupdate/" + userId, user);
+      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/userupdate/" + userId, user);
       navigate("/UserInfomation");
       MySwal.fire({
         html: <i>Updated successfully!</i>,

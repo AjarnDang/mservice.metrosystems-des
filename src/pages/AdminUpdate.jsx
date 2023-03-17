@@ -44,7 +44,7 @@ function AdminUpdate() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/admin/"+adminId, admin);
+      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/updateadmin/"+adminId, admin);
       navigate("/AdminAdd");
       MySwal.fire({
         html: <i>Admin has been updated successfully!</i>,

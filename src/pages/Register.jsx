@@ -35,7 +35,7 @@ function Register() {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/users", user);
+        await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/useradd", user);
         navigate("/register");
         MySwal.fire({
           html: <i>Registered successfully!</i>,
