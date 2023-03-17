@@ -23,46 +23,52 @@ function AdminProfile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-		fecthAllAdmin();
-	}, []);
+    fecthAllAdmin();
+  }, []);
 
-	const fecthAllAdmin = async () => {
-		try {
-			const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/admin");
-			setAdmin(res.data);
-			await parseJwt(token);
-			profilesAuth(res.data, parseJwt(token));
-		} catch (err) {
-			console.log(err);
-		}
-	};
+  const fecthAllAdmin = async () => {
+    try {
+      const res = await axios.get(
+        "https://charming-goat-flannel-nightgown.cyclic.app/admin"
+      );
+      setAdmin(res.data);
+      await parseJwt(token);
+	    console.log(parseJwt(token))
+      profilesAuth(res.data, parseJwt(token));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-	function parseJwt(token) {
-		var base64Url = token.split(".")[1];
-		var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-		var jsonPayload = decodeURIComponent(
-			window
-				.atob(base64)
-				.split("")
-				.map(function (c) {
-					return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-				})
-				.join("")
-		);
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      window
+        .atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
 
-		return JSON.parse(jsonPayload);
-	}
+    return JSON.parse(jsonPayload);
+  }
 
-	const profilesAuth = (data, email) => {
-		if (data) {
-			data.map((item) => {
-				if ((item.email = email)) {
-					setAdminAuth(item);
-          console.log(email)
-				}
-			});
-		}
-	};
+  const profilesAuth = (data, email) => {
+    console.log(email.email);
+      if (data) {
+        data.map((item) => {
+          if (item.email == email.email) {
+            setAdminAuth(item);
+          //   console.log(email);
+      //   console.log(item);
+          }
+        });
+      }
+    };
+    console.log(adminAuth)
 
   return (
     <div className="app">
@@ -74,7 +80,9 @@ function AdminProfile() {
             <div className="col-lg-7 col-md-7 col-sm-12 ml-auto d-flex align-items-center">
               <div>
                 <h1>{adminAuth.username}</h1>
-                <h5>{adminAuth.fname} {adminAuth.lname}</h5> 
+                <h5>
+                  {adminAuth.fname} {adminAuth.lname}
+                </h5>
               </div>
             </div>
           </div>
