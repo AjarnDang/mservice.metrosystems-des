@@ -44,7 +44,7 @@ const UserAdd = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:3333/reguser", user);
+      await axios.post("http://localhost:3333/useradd", user);
       navigate("/userinfomation");
       MySwal.fire({
         html: <i>User has been added successfully!</i>,
