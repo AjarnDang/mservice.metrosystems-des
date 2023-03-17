@@ -1,61 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
-import { Box, TextField, useTheme, Link } from "@mui/material";
-import * as yup from "yup";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import axios from "axios";
+import { Box, useTheme } from "@mui/material";
 
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
-
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const UserAdd = () => {
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+function AdminAdd() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isSidebar, setIsSidebar] = useState(true);
 
-  const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
+  const navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    title: "",
+  const [admin, setAdmin] = useState({
+    username: "",
+    password: "",
     fname: "",
     lname: "",
-    age: "",
-    phone: "",
     email: "",
-    jobtitle: "",
-    company: "",
-    description: "",
   });
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setUser((prev) => ({ ...prev, [name]: value }));
+    setAdmin((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/useradd", user);
-      navigate("/UserInfomation");
+      await axios.post("http://localhost:3333/regadmin", admin);
+      navigate("/AdminAdd");
       MySwal.fire({
-        html: <i>User has been added successfully!</i>,
+        html: <i>Admin has been added successfully!</i>,
         icon: "success",
       }).then((value) => {
         window.location.reload();
       });
     } catch (err) {
         MySwal.fire({
-        html: <i>Fail to add User!</i>,
+        html: <i>Fail to add Admin!</i>,
         icon: "error",
         })
     }
@@ -66,44 +60,50 @@ const UserAdd = () => {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="20px">
+        <Box m="30px">
           <div className="row my-4">
             <div className="col-lg-6 col-md-12">
-              <h1>Registration</h1>
-            </div>
-            <div className="col-lg-6 col-md-12 right-button-header right-button-import">
-              <button
-                className="border-0 bg-transparent"
-                style={{ color: colors.grey[100],}}>
-                <FileDownloadIcon style={{ width: "28px", height: "28px" }} />{" "}
-                Import User
-              </button>
+              <h1>Settings</h1>
             </div>
           </div>
-
-          <div className="card border-0 shadow-sm p-4">
-            <Form className="form-bg-white" onSubmit={handleSubmit}>
+          <div className="card border-0 shadow-sm p-4 w-100">
+            <Form>
+              <h4>Add Admin</h4>
+              <hr />
               <Row className="mb-3">
-                <Col lg={2} md={12} sm={12}>
-                  <Form.Group controlId="formBasicTitle">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
-                      Title <span className="text-danger">*</span>
+                <Col lg={6} md={12} sm={12}>
+                  <Form.Group controlId="formBasicUsername">
+                    <Form.Label className="label mt-2">
+                      Username <span className="text-danger">*</span>
                     </Form.Label>
-                    <Form.Select 
-                      name="title"
+                    <Form.Control
+                      type="text"
+                      name="username"
                       onChange={handleChange}
+                      placeholder="johndoe123"
                       required
-                      >
-                      <option>Choose Title</option>
-                      <option value="Mr.">Mr.</option>
-                      <option value="Mrs.">Mrs.</option>
-                      <option value="Ms.">Ms.</option>
-                    </Form.Select>
+                    />
                   </Form.Group>
                 </Col>
-                <Col lg={5} md={12} sm={12}>
+                <Col lg={6} md={12} sm={12}>
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label className="label mt-2">
+                      Password <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="xxxxxxxx"
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col lg={6} md={12} sm={12}>
                   <Form.Group controlId="formBasicFirstname">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label className="label mt-2">
                       First name <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -111,47 +111,29 @@ const UserAdd = () => {
                       name="fname"
                       onChange={handleChange}
                       placeholder="John"
-                      className="w-100"
                       required
                     />
                   </Form.Group>
                 </Col>
-                <Col lg={5} md={12} sm={12}>
+                <Col lg={6} md={12} sm={12}>
                   <Form.Group controlId="formBasicLastname">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
-                      Last Name <span className="text-danger">*</span>
+                    <Form.Label className="label mt-2">
+                      Last name <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
                       name="lname"
                       onChange={handleChange}
                       placeholder="Doe"
-                      className="w-100"
                       required
                     />
                   </Form.Group>
                 </Col>
               </Row>
-
               <Row className="mb-3">
-                <Col lg={4} md={12} sm={12}>
-                  <Form.Group
-                    controlId="formBasicAge"
-                    style={{ color: "#000" }}
-                  >
-                    <Form.Label className="label mt-2">Age</Form.Label>
-                    <Form.Control
-                      type="number"
-                      name="age"
-                      onChange={handleChange}
-                      placeholder="25"
-                      className="w-100"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col lg={4} md={12} sm={12}>
+                <Col lg={12} md={12} sm={12}>
                   <Form.Group controlId="formBasicEmail">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label className="label mt-2">
                       Email <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -159,123 +141,18 @@ const UserAdd = () => {
                       name="email"
                       onChange={handleChange}
                       placeholder="example@gmail.com"
-                      className="w-100"
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col lg={4} md={12} sm={12}>
-                  <Form.Group controlId="formBasicPhone">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
-                      Phone <span className="text-danger">*</span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="phone"
-                      onChange={handleChange}
-                      placeholder="08XXXXXXXX"
-                      className="w-100"
-                      maxLength={10}
-                      minLength={10}
                       required
                     />
                   </Form.Group>
                 </Col>
               </Row>
-
-              <Row className="mb-3">
-                <Col lg={6} md={12} sm={12}>
-                  <Form.Group controlId="formBasicJobTitle" style={{ color: "#000" }}>
-                    <Form.Label className="label mt-2">
-                      Job Title <span className="text-danger">*</span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="jobtitle"
-                      onChange={handleChange}
-                      placeholder="Senior Engineer"
-                      className="w-100"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col lg={6} md={12} sm={12}>
-                  <Form.Group controlId="formBasicCompany" style={{ color: "#000" }}>
-                    <Form.Label className="label mt-2">
-                      Company <span className="text-danger">*</span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="company"
-                      onChange={handleChange}
-                      placeholder="Example Company Co.Ltd"
-                      className="w-100"
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Row className="mb-3">
-                <Col>
-                  <Form.Group controlId="formBasicTitle">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
-                      Description
-                    </Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={8}
-                      name="description"
-                      onChange={handleChange}
-                      placeholder="Interested in OEE to productive improvement"
-                      className="w-100"
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <div className="submit-right">
-                <Link href="./QrcodeGenetor">
-                  <Button
-                    style={{
-                      backgroundColor: colors.blueAccent[600],
-                      border: 0,
-                    }}
-                    type="submit"
-                    className="px-5 py-2 mt-5"
-                  >
-                    Submit
-                  </Button>
-                </Link>
-              </div>
+              <Button onClick={handleSubmit}>Add</Button>
             </Form>
           </div>
         </Box>
       </main>
     </div>
   );
-};
+}
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
-const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
-});
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
-};
-
-export default UserAdd;
+export default AdminAdd;
