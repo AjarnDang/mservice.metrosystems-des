@@ -39,16 +39,16 @@ function Register() {
       await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/useradd", user);
       navigate("/register");
       MySwal.fire({
-        html: <i>Registered successfully!</i>,
+        html: <i>Register successfully!</i>,
         icon: "success",
       }).then((value) => {
         window.location.reload();
       });
     } catch (err) {
-      MySwal.fire({
+        MySwal.fire({
         html: <i>{err}</i>,
         icon: "error",
-      });
+        })
     }
   };
 
@@ -121,20 +121,6 @@ function Register() {
                 </Form.Group>
               </Col>
               <Col lg={4} md={4} sm="auto">
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label className="label">
-                    Email <span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    className="w-100"
-                    required
-                  />
-                </Form.Group>
-              </Col>
-              <Col lg={4} md={4} sm="auto">
                 <Form.Group controlId="formBasicPhone">
                   <Form.Label className="label">
                     Phone <span className="text-danger">*</span>
@@ -146,6 +132,20 @@ function Register() {
                     className="w-100"
                     maxLength={10}
                     minLength={10}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col lg={4} md={4} sm="auto">
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label className="label">
+                    Email <span className="text-danger">*</span>
+                  </Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    className="w-100"
                     required
                   />
                 </Form.Group>
