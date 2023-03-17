@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
 import { Box, TextField, useTheme, Link } from "@mui/material";
-import * as yup from "yup";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import axios from "axios";
 
@@ -45,8 +44,8 @@ const UserAdd = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:3333/useradd", user);
-      navigate("/UserInfomation");
+      await axios.post("http://localhost:3333/reguser", user);
+      navigate("/userinfomation");
       MySwal.fire({
         html: <i>User has been added successfully!</i>,
         icon: "success",
@@ -74,7 +73,8 @@ const UserAdd = () => {
             <div className="col-lg-6 col-md-12 right-button-header right-button-import">
               <button
                 className="border-0 bg-transparent"
-                style={{ color: colors.grey[100],}}>
+                style={{ color: colors.grey[100] }}
+              >
                 <FileDownloadIcon style={{ width: "28px", height: "28px" }} />{" "}
                 Import User
               </button>
@@ -86,11 +86,14 @@ const UserAdd = () => {
               <Row className="mb-3">
                 <Col lg={2} md={12} sm={12}>
                   <Form.Group controlId="formBasicTitle">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label
+                      className="label mt-2"
+                      style={{ color: "#000" }}
+                    >
                       Title <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Select 
-                      name="title"
+                      name="title" 
                       onChange={handleChange}
                       required
                       >
@@ -103,14 +106,16 @@ const UserAdd = () => {
                 </Col>
                 <Col lg={5} md={12} sm={12}>
                   <Form.Group controlId="formBasicFirstname">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label
+                      className="label mt-2"
+                      style={{ color: "#000" }}
+                    >
                       First name <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
                       name="fname"
                       onChange={handleChange}
-                      placeholder="John"
                       className="w-100"
                       required
                     />
@@ -118,14 +123,16 @@ const UserAdd = () => {
                 </Col>
                 <Col lg={5} md={12} sm={12}>
                   <Form.Group controlId="formBasicLastname">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label
+                      className="label mt-2"
+                      style={{ color: "#000" }}
+                    >
                       Last Name <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
                       name="lname"
                       onChange={handleChange}
-                      placeholder="Doe"
                       className="w-100"
                       required
                     />
@@ -144,21 +151,22 @@ const UserAdd = () => {
                       type="number"
                       name="age"
                       onChange={handleChange}
-                      placeholder="25"
                       className="w-100"
                     />
                   </Form.Group>
                 </Col>
                 <Col lg={4} md={12} sm={12}>
                   <Form.Group controlId="formBasicEmail">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label
+                      className="label mt-2"
+                      style={{ color: "#000" }}
+                    >
                       Email <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
                       type="email"
                       name="email"
                       onChange={handleChange}
-                      placeholder="example@gmail.com"
                       className="w-100"
                       required
                     />
@@ -166,14 +174,16 @@ const UserAdd = () => {
                 </Col>
                 <Col lg={4} md={12} sm={12}>
                   <Form.Group controlId="formBasicPhone">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label
+                      className="label mt-2"
+                      style={{ color: "#000" }}
+                    >
                       Phone <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
                       name="phone"
                       onChange={handleChange}
-                      placeholder="08XXXXXXXX"
                       className="w-100"
                       maxLength={10}
                       minLength={10}
@@ -185,7 +195,10 @@ const UserAdd = () => {
 
               <Row className="mb-3">
                 <Col lg={6} md={12} sm={12}>
-                  <Form.Group controlId="formBasicJobTitle" style={{ color: "#000" }}>
+                  <Form.Group
+                    controlId="formBasicJobTitle"
+                    style={{ color: "#000" }}
+                  >
                     <Form.Label className="label mt-2">
                       Job Title <span className="text-danger">*</span>
                     </Form.Label>
@@ -193,13 +206,15 @@ const UserAdd = () => {
                       type="text"
                       name="jobtitle"
                       onChange={handleChange}
-                      placeholder="Senior Engineer"
                       className="w-100"
                     />
                   </Form.Group>
                 </Col>
                 <Col lg={6} md={12} sm={12}>
-                  <Form.Group controlId="formBasicCompany" style={{ color: "#000" }}>
+                  <Form.Group
+                    controlId="formBasicCompany"
+                    style={{ color: "#000" }}
+                  >
                     <Form.Label className="label mt-2">
                       Company <span className="text-danger">*</span>
                     </Form.Label>
@@ -207,7 +222,6 @@ const UserAdd = () => {
                       type="text"
                       name="company"
                       onChange={handleChange}
-                      placeholder="Example Company Co.Ltd"
                       className="w-100"
                       required
                     />
@@ -218,7 +232,10 @@ const UserAdd = () => {
               <Row className="mb-3">
                 <Col>
                   <Form.Group controlId="formBasicTitle">
-                    <Form.Label className="label mt-2" style={{ color: "#000" }}>
+                    <Form.Label
+                      className="label mt-2"
+                      style={{ color: "#000" }}
+                    >
                       Description
                     </Form.Label>
                     <Form.Control
@@ -226,7 +243,6 @@ const UserAdd = () => {
                       rows={8}
                       name="description"
                       onChange={handleChange}
-                      placeholder="Interested in OEE to productive improvement"
                       className="w-100"
                     />
                   </Form.Group>
@@ -254,6 +270,5 @@ const UserAdd = () => {
     </div>
   );
 };
-
 
 export default UserAdd;
