@@ -39,7 +39,7 @@ function AdminAdd() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:3333/regadmin", admin);
+      await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/regadmin", admin);
       navigate("/AdminAdd");
       MySwal.fire({
         html: <i>Admin has been added successfully!</i>,

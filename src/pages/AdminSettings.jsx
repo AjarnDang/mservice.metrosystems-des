@@ -25,7 +25,7 @@ function AdminSettings() {
   useEffect(() => {
     const fecthAllAdmin = async () => {
       try {
-        const res = await axios.get("http://localhost:3333/admin");
+        const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/admin");
         setAdmin(res.data);
       } catch (err) {
         console.log(err);
@@ -37,7 +37,7 @@ function AdminSettings() {
   //Delete admin
   const handleDelete = async (id) => {
     try {
-      await axios.delete("http://localhost:3333/deleteadmin/" +id);
+      await axios.delete("https://charming-goat-flannel-nightgown.cyclic.app/deleteadmin/" +id);
       MySwal.fire({
         html: <i>Admin has been added successfully!</i>,
         icon: "success",

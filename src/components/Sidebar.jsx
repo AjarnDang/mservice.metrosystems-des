@@ -52,7 +52,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    fetch("http://localhost:3333/auth", {
+    fetch("https://charming-goat-flannel-nightgown.cyclic.app/auth", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

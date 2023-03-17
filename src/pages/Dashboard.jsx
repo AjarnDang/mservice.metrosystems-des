@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   //Fecth all user
   useEffect(() => {
-    fetch('http://localhost:3333/alluser')
+    fetch('https://charming-goat-flannel-nightgown.cyclic.app/alluser')
       .then(response => response.json())
       .then(data => setUserCount(data.count));
   }, []);
