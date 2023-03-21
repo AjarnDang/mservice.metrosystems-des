@@ -30,7 +30,7 @@ function ConfirmBoothSignin() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-          await axios.put("http://localhost:3333/user_booth_signin/"+userEmail, user);
+          await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/user_booth_signin/"+userEmail, user);
           console.log(userEmail)
           navigate(`/ConfirmBoothSignout/${userEmail}`);
           MySwal.fire({
@@ -50,7 +50,7 @@ function ConfirmBoothSignin() {
     const [userdetail, setUserdetail] = useState([]);
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3333/useremail/${userEmail}`);
+        const res = await axios.get(`https://charming-goat-flannel-nightgown.cyclic.app/useremail/${userEmail}`);
         setUserdetail(res.data.data);
         console.log(res.data);
       } catch (err) {
