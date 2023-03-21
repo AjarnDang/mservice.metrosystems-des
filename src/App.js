@@ -18,6 +18,8 @@ import UserInfomation from './pages/UserInfomation';
 import UserUpdate from './pages/UserUpdate';
 import UserAdd from './pages/UserAdd';
 import QrCodeGenerator from './pages/QrCodeGenerator';
+import ConfirmBoothSignin from './pages/ConfirmBoothSignin';
+import ConfirmBoothSignout from './pages/ConfirmBoothSignout';
 
 
 function App() {
@@ -39,7 +41,9 @@ function App() {
               <Route path="/adminprofile" element={<AdminProfile />} />
               <Route path="/adminadd" element={<AdminAdd />} />
               <Route path="/adminupdate/:id" element={<AdminUpdate />} /> 
-              <Route path="/qrcodegenerator" element={<QrCodeGenerator />} />      
+              <Route path="/qrcodegenerator" element={<QrCodeGenerator />} />  
+              <Route path="/confirmboothsignin/:email" element={<ConfirmBoothSignin />} />   
+              <Route path="/confirmboothsignout/:email" element={<ConfirmBoothSignout />} />     
             </Routes>         
         </ThemeProvider>
       </ColorModeContext.Provider>
