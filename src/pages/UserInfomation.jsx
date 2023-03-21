@@ -156,9 +156,9 @@ const UserInfomation = () => {
                       )
                       .map((user) => {
                         let ustatus = "";
-                        if (user.status == 0) {
+                        if (user.status === 0) {
                           ustatus = "Not registered";
-                        } else if (user.status == 1) {
+                        } else if (user.status === 1) {
                           ustatus = "Signed in";
                         } else {
                           ustatus = "Signed out";
