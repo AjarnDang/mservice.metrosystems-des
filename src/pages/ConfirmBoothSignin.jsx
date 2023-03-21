@@ -191,14 +191,7 @@ function ConfirmBoothSignin() {
                         </div> 
                     </Form>
                 </div>
-                <div className='text-center' 
-                    style={{
-                        position:"absolute",
-                        bottom:"0",
-                    }}>
-                        
-                </div>
-
+          
                 <div id="copy-right">
       © Copyright Metro Systems Corporation Plc {CurrYear}. 
     </div>
