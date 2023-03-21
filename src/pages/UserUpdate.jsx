@@ -276,7 +276,7 @@ const UserUpdate = () => {
               <div className="card border-0 shadow-sm p-4 d-flex">
                 <div className="img-wrapper">
                   <img
-                    src="https://www.mindphp.com/forums/download/file.php?id=560"
+                    src={userdetail.qrcode}
                     className="img-fluid"
                   />
                 </div>
