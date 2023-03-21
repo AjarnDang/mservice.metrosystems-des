@@ -82,6 +82,7 @@ const UserInfomation = () => {
     { field: "email",   label: "Email",       flex: 1 },
     { field: "jobtitle",label: "Job Title",   flex: 0 },
     { field: "company", label: "Company",     flex: 0 },
+    { field: "status",  label: "Status",      flex: 0 },
     { field: "action",  label: "Action",      flex: 1 },
   ];
 
@@ -165,6 +166,7 @@ const UserInfomation = () => {
                             <TableCell>{user.email}</TableCell>
                             <TableCell style={{ minWidth: "100px" }}>{user.jobtitle}</TableCell>
                             <TableCell>{user.company}</TableCell>
+                            <TableCell>{user.status}</TableCell>
                             <TableCell style={{ minWidth: "170px" }}>
                               <button
                                 className="edit-button btn btn-warning"
