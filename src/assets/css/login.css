@@ -43,7 +43,7 @@
     color: white;
 }
 
-@media screen and (max-width: 577px) {
+@media screen and (max-width: 575px) {
     #copy-right {
         display: none !important;
         overflow: hidden !important;
