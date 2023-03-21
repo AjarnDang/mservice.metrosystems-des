@@ -155,6 +155,13 @@ const UserInfomation = () => {
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((user) => {
+                        if(user.status == 0) {
+                          ustatus = "Not registered"
+                        } else if (user.status == 1) {
+                          ustatus = "Signed in"
+                        } else {
+                          ustatus = "Signed out"
+                        }
                         return (
                           <TableRow>
                             <TableCell>{user.id}</TableCell>
@@ -166,7 +173,7 @@ const UserInfomation = () => {
                             <TableCell>{user.email}</TableCell>
                             <TableCell style={{ minWidth: "100px" }}>{user.jobtitle}</TableCell>
                             <TableCell>{user.company}</TableCell>
-                            <TableCell>{user.status}</TableCell>
+                            <TableCell>{ustatus}</TableCell>
                             <TableCell style={{ minWidth: "170px" }}>
                               <button
                                 className="edit-button btn btn-warning"
