@@ -155,12 +155,13 @@ const UserInfomation = () => {
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((user) => {
-                        if(user.status == 0) {
-                          ustatus = "Not registered"
-                        } if (user.status == 1) {
-                          ustatus = "Signed in"
+                        let ustatus = "";
+                        if (user.status == 0) {
+                          ustatus = "Not registered";
+                        } else if (user.status == 1) {
+                          ustatus = "Signed in";
                         } else {
-                          ustatus = "Signed out"
+                          ustatus = "Signed out";
                         }
                         return (
                           <TableRow>
