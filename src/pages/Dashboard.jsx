@@ -2,44 +2,96 @@ import React, { useState, useEffect } from "react";
 import { Box, useTheme } from "@mui/material";
 import { tokens } from "../theme";
 
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
+import axios from "axios";
 
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
 import BarChart from "../components/BarChart";
-
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isSidebar, setIsSidebar] = useState(true);
 
-  const MySwal = withReactContent(Swal)
-  const [user, setUser] = useState([]);
-  const [userCount, setUserCount] = useState(0);
+  const MySwal = withReactContent(Swal);
 
   //Fecth all user
-  useEffect(() => {
-    fetch('https://charming-goat-flannel-nightgown.cyclic.app/alluser')
-      .then(response => response.json())
-      .then(data => setUserCount(data.count));
-  }, []);
+    const [userCount, setUserCount] = useState(0);
+    useEffect(() => {
+      const countAllUser = async () => {
+        try {
+          const res = await axios.get("http://localhost:3333/countallusers2");
+          setUserCount(res.data.count);
+          console.log(res.data.count)
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      countAllUser();
+    }, []);
+
+    //Fecth all user active
+    const [userCountActive, setUserCountActive] = useState(0);
+    useEffect(() => {
+      const countAllUserActive = async () => {
+        try {
+          const res = await axios.get("http://localhost:3333/countallusers_active");
+          setUserCountActive(res.data.count);
+          console.log(res.data.count)
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      countAllUserActive();
+    }, []); 
+
+    //Fecth all user has qr code
+    const [userCountHasQR, setUserCountHasQR] = useState(0);
+    useEffect(() => {
+      const countAllUserHasQr = async () => {
+        try {
+          const res = await axios.get("http://localhost:3333/countallusers_hasqrcode");
+          setUserCountHasQR(res.data.count);
+          console.log(res.data.count)
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      countAllUserHasQr();
+    }, []);
+
+    //Fecth all user reg today
+    const [userCountRegtoday, setUserCountRegtoday] = useState(0);
+    useEffect(() => {
+      const countAllUserRegtoday = async () => {
+        try {
+          const res = await axios.get("http://localhost:3333/countallusers_regtoday");
+          setUserCountRegtoday(res.data.count);
+          console.log(res.data.count)
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      countAllUserRegtoday();
+    }, []);
+
 
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="30px" key={user.id}>
+        <Box m="30px">
           <div className="row w-100">
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-2">
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">
                 <div className="d-flex justify-content-between">
                   <div>
                     <span className="header-card-dashboard">Total Users</span>
-                    <h1 className="fw-bold lh-1">112</h1>
+                    <h1 className="fw-bold lh-1">{userCount}</h1>
                   </div>
                   <div className="align-middle mt-3">
                     <span
@@ -63,7 +115,7 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between">
                   <div>
                     <span className="header-card-dashboard">Active</span>
-                    <h1 className="fw-bold lh-1">102</h1>
+                    <h1 className="fw-bold lh-1">{userCountActive}</h1>
                   </div>
                   <div className="align-middle mt-3">
                     <span
@@ -87,7 +139,7 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between">
                   <div>
                     <span className="header-card-dashboard">Has QR Code</span>
-                    <h1 className="fw-bold lh-1">81</h1>
+                    <h1 className="fw-bold lh-1">{userCountHasQR}</h1>
                   </div>
                   <div className="align-middle mt-3">
                     <span
@@ -110,8 +162,10 @@ const Dashboard = () => {
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">
                 <div className="d-flex justify-content-between">
                   <div>
-                    <span className="header-card-dashboard">Register Today</span>
-                    <h1 className="fw-bold lh-1">9</h1>
+                    <span className="header-card-dashboard">
+                      Register Today
+                    </span>
+                    <h1 className="fw-bold lh-1">{userCountRegtoday}</h1>
                   </div>
                   <div className="align-middle mt-3">
                     <span
