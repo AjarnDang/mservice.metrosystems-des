@@ -157,11 +157,11 @@ const UserInfomation = () => {
                       .map((user) => {
                         let ustatus = "";
                         if (user.status === 0) {
-                          ustatus = "<span className='text-muted'>Not registered</span>";
+                          ustatus = <span className='text-muted'>Not registered</span>
                         } else if (user.status === 1) {
-                          ustatus = "<span className='text-success'>Signed in</span>";
+                          ustatus = <span className='text-success'>Signed in</span>
                         } else {
-                          ustatus = "<span className='text-danger'>Signed out</span>";
+                          ustatus = <span className='text-danger'>Signed out</span>
                         }
                         return (
                           <TableRow>
