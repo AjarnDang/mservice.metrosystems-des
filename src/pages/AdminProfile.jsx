@@ -70,6 +70,40 @@ function AdminProfile() {
     };
     console.log(adminAuth)
 
+
+    const [updateAdmin, setUpdateAdmin] = useState({
+      fname: "",
+      lname: "",
+      username: "",
+      password: "",
+      email: "",
+    });
+  
+    const handleChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setUpdateAdmin((prev) => ({ ...prev, [name]: value }));
+    };
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        await axios.put("http://localhost:3333/updateadmin/"+adminAuth.id, updateAdmin);
+        navigate("/adminsettings");
+        MySwal.fire({
+          html: <i>Admin has been updated successfully!</i>,
+          icon: "success",
+        }).then((value) => {
+          window.location.reload();
+        });
+      } catch (err) {
+          MySwal.fire({
+          html: <i>Fail to update Admin!</i>,
+          icon: "error",
+          })
+      }
+    };
+    
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
