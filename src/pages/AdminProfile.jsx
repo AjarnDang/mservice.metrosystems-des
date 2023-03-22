@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Avatar from "@mui/material/Avatar";
 
 function AdminProfile() {
   const theme = useTheme();
