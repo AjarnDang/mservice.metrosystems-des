@@ -47,9 +47,9 @@ const UserUpdate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/usersupdate/" + userId, user);
-      console.log(userId)
-      navigate("/UserInfomation");
+      await axios.put("http://localhost:3333/usersupdate/" + userId, user);
+      console.log(userId);
+      navigate("/userinfomation");
       MySwal.fire({
         html: <i>Updated successfully!</i>,
         icon: "success",
@@ -66,7 +66,7 @@ const UserUpdate = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://charming-goat-flannel-nightgown.cyclic.app/users/${id}`);
+      const res = await axios.get(`http://localhost:3333/users/${id}`);
       setUser(res.data.data);
       console.log(res.data);
     } catch (err) {
@@ -78,13 +78,38 @@ const UserUpdate = () => {
     fetchData();
   }, []);
 
+  let user_qrcode = "";
+  if (user.qrcode === "") {
+    user_qrcode = (
+      <div
+        className="d-flex align-items-center justify-content-center bg-secondary rounded"
+        style={{ height: "80px" }}
+      >
+        <div className="text-white text-center">
+          This user has no QR Code. <br />
+          you can delete and create new user.
+          </div>
+      </div>
+    );
+  } else {
+    user_qrcode = <img src={user.qrcode} className="img-fluid" />;
+  }
+
+  const savedTime = user.created_at;
+  const formatedDate = new Date(savedTime).toLocaleString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+  console.log(formatedDate);
+
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
         <Box m="20px">
-          <div className="row my-4 w-100">
+          <div className="row w-100">
             <div className="col-lg-6 col-md-12 mb-2">
               <span className="h1 span-h1">Register Infomation</span>
               <span className="span-user-id">User ID : {id}</span>
@@ -106,7 +131,7 @@ const UserUpdate = () => {
           </div>
 
           <div className="row w-100">
-            <div className="col-lg-9 col-md-12 col-sm-12">
+            <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 mt-4">
               <div className="card border-0 shadow-sm p-4">
                 <Form style={{ color: "#000" }} onSubmit={handleSubmit}>
                   <Row className="mb-3">
@@ -119,7 +144,7 @@ const UserUpdate = () => {
                           name="title"
                           onChange={handleChange}
                           value={user.title}
-                          required                        
+                          required
                         >
                           <option value="Mr.">Mr.</option>
                           <option value="Mrs.">Mrs.</option>
@@ -270,24 +295,9 @@ const UserUpdate = () => {
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-12 col-sm-12">
+            <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 mt-4">
               <div className="card border-0 shadow-sm p-4 d-flex">
-                <div className="img-wrapper">
-                  <img
-                    src="https://www.mindphp.com/forums/download/file.php?id=560"
-                    className="img-fluid"
-                  />
-                </div>
-                <Button
-                  style={{
-                    background: "transparent",
-                    color: colors.blueAccent[600],
-                    width: "100%",
-                    marginTop: "20px",
-                  }}
-                >
-                  Generate QR Code
-                </Button>
+                <div className="img-wrapper">{user_qrcode}</div>
                 <span
                   style={{
                     textAlign: "center",
@@ -295,7 +305,7 @@ const UserUpdate = () => {
                     marginTop: "40px",
                   }}
                 >
-                  Created: 7/02/2023 07:30 Pm.
+                  Created: {formatedDate}
                 </span>
               </div>
             </div>
