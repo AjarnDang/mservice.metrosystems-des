@@ -6,12 +6,10 @@ import { ColorModeContext, useMode } from "./theme";
 
 import Dashboard from "./pages/Dashboard";
 import Login from './pages/Login';
-import LoginAPI from './pages/LoginAPI';
 import Register from './pages/Register';
 import QrcodeGenetor from './pages/QrcodeGenetor';
 import AdminSettings from './pages/AdminSettings';
 import AdminProfile from './pages/AdminProfile';
-import AdminProfileAPI from './pages/AdminProfileAPI';
 import AdminAdd from './pages/AdminAdd';
 import AdminUpdate from './pages/AdminUpdate';
 import UserInfomation from './pages/UserInfomation';
