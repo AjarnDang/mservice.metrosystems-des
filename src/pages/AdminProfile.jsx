@@ -119,6 +119,13 @@ function AdminProfile() {
   };
   console.log(admin);
 
+  const savedTime = admin.created_at;
+  const formatedDate = new Date(savedTime).toLocaleString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
@@ -151,7 +158,15 @@ function AdminProfile() {
 
           <div className="card border-0 shadow-sm mt-4">
             <div className="card-header bg-white p-3">
-              <h5 className="pb-0 mb-0">General Infomation</h5>
+              <div className="row">
+                <div className="col-xl-6 col-md-12 text-start">
+                  <h5 className="pb-0 mb-0">General Infomation</h5>
+                </div>
+                <div className="col-xl-6 col-md-12 text-end">
+                  <span className="pb-0 mb-0">Created : {formatedDate}</span>
+                </div>
+              </div>
+              
             </div>
             <div className="card-body">
             <Form>
