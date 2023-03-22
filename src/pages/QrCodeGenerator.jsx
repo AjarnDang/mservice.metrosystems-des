@@ -91,11 +91,11 @@ function QrCodeGenerator() {
                 <div className="col-md-auto" id="qrCodeEl">
                   {qrcode && (
                     <>
-                      <img src={qrcode} width="500px" />
+                      <img src={qrcode} width="500px" className="border-1" />
                       <br />
                       <a
                         id=""
-                        className="btn btn-success mt-2"
+                        className="btn btn-success mt-3"
                         href={qrcode}
                         download="qrcode.png"
                       >
