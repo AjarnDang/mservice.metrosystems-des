@@ -153,7 +153,7 @@ const UserInfomation = () => {
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
-                      .map((user) => {
+                      .map((user, index) => {
                         let ustatus = "";
                         if (user.status === 0) {
                           ustatus = <span className='text-muted'>Not registered</span>
@@ -164,7 +164,7 @@ const UserInfomation = () => {
                         }
                         return (
                           <TableRow>
-                            <TableCell>{user.id}</TableCell>
+                            <TableCell>{(rowsPerPage*page) + 1 + index}</TableCell>
                             <TableCell>{user.title}</TableCell>
                             <TableCell>{user.fname}</TableCell>
                             <TableCell>{user.lname}</TableCell>
