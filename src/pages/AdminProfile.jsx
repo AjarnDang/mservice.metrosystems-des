@@ -76,14 +76,100 @@ function AdminProfile() {
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
         <Box m="30px">
-          <div className="row">
-            <div className="col-lg-7 col-md-7 col-sm-12 ml-auto d-flex align-items-center">
-              <div>
-                <h1>{adminAuth.username}</h1>
-                <h5>
-                  {adminAuth.fname} {adminAuth.lname}
-                </h5>
+          <div className="card p-4 border-0 shadow-sm">
+            <div className="row">
+              <div className="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+                <Avatar
+                  src="/broken-image.jpg"
+                  sx={{
+                    backgroundColor: `${colors.blueAccent[300]} !important`,
+                  }}
+                  style={{
+                    width: "170px",
+                    height: "170px",
+                  }}
+                />
               </div>
+              <div className="col-xl-7 col-lg-8 col-md-9 col-sm-12 ml-auto d-flex align-items-center">
+                <div>
+                  <h2>{adminAuth.username}</h2>
+                  <h5>
+                    {adminAuth.fname} {adminAuth.lname}
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm mt-4">
+            <div class="card-header bg-white p-3">
+              <h5 className="pb-0 mb-0">General Infomation</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div className="form-group row">
+                  <div className="col-md-6 col-sm-12">
+                    <label class="form-label">Username</label>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      name="username" 
+                      value={adminAuth.username}
+                      onChange={handleChange} 
+                      />
+                  </div>
+                  <div className="col-md-6 col-sm-12">
+                    <label class="form-label">Password</label>
+                    <input 
+                      type="password" 
+                      className="form-control" 
+                      name="password" 
+                      value="" 
+                      onChange={handleChange}
+                      />
+                  </div>
+                </div>
+                <div className="form-group row mt-3">
+                  <div className="col-md-6 col-sm-12">
+                    <label class="form-label">First name</label>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      name="fname" 
+                      value={adminAuth.fname}
+                      onChange={handleChange} 
+                      />
+                  </div>
+                  <div className="col-md-6 col-sm-12">
+                    <label class="form-label">Last name</label>
+                    <input 
+                      type="lname" 
+                      className="form-control" 
+                      name="lname" 
+                      value={adminAuth.lname}
+                      onChange={handleChange} 
+                      />
+                  </div>
+                </div>
+                <div className="form-group row mt-3">
+                  <div className="col-12">
+                    <label class="form-label">Email</label>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      name="fname" 
+                      value={adminAuth.email} 
+                      onChange={handleChange}
+                      />
+                  </div>
+                </div>
+                <button 
+                  onChange={handleSubmit} 
+                  className="btn btn-primary mt-4 px-4"
+                  >
+                   Update
+                  </button>
+              </form>
             </div>
           </div>
         </Box>
