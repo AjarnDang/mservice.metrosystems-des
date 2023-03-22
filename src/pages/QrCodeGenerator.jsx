@@ -4,14 +4,14 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
+import "../assets/css/register.css";
 // import { response } from "express";
 
 function QrCodeGenerator() {
-  
-  const [url, setUrl] = useState('');
-  const [email, setEmail] = useState('');
-  const [qrcode, setQrcode] = useState('');
-  const [user, setUser] = useState('');
+  const [url, setUrl] = useState("");
+  const [email, setEmail] = useState("");
+  const [qrcode, setQrcode] = useState("");
+  const [user, setUser] = useState("");
 
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
@@ -19,30 +19,48 @@ function QrCodeGenerator() {
   const getQRCode = async (event) => {
     event.preventDefault();
     try {
-        const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/useremail/"+email );
-        console.log(res.data.data);
+      const res = await axios.get(
+        "https://charming-goat-flannel-nightgown.cyclic.app/useremail/" + email
+      );
+      if (res.data.data != undefined) {
+      console.log(res.data.data);
+      MySwal.fire({
+        html: <i>Retrieved email success</i>,
+        icon: "success",
+      }).then((value) => {
+        //token สำหรับยืนยันตัวตนว่าเข้าสู่ระบบแล้ว
         setQrcode(res.data.data.qrcode);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-      
-    //   navigate("/QrCodeGenerator");
-      
-      // MySwal.fire({
-      //   html: <i>User has been added successfully!</i>,
-      //   icon: "success",
-      // }).then((value) => {
-      //   window.location.reload();
-      // });
-    // } catch (err) {
-    //     MySwal.fire({
-    //     html: <i>Fail to add User!</i>,
-    //     icon: "error",
-    //     })
-    // }
-  
- 
+        // navigate("/dashboard");
+      });
+    } else {
+      MySwal.fire({
+        html: <i>Error. Email incorrect or not found</i>,
+        icon: "error",
+      });
+    }
+    } catch (err) {
+      console.log(err);
+      MySwal.fire({
+        html: <i>Error. Email incorrect or not found</i>,
+        icon: "error",
+      });
+    }
+  };
+
+  //   navigate("/QrCodeGenerator");
+
+  // MySwal.fire({
+  //   html: <i>User has been added successfully!</i>,
+  //   icon: "success",
+  // }).then((value) => {
+  //   window.location.reload();
+  // });
+  // } catch (err) {
+  //     MySwal.fire({
+  //     html: <i>Fail to add User!</i>,
+  //     icon: "error",
+  //     })
+  // }
 
   return (
     <div className="container justify-content-center p-5">
@@ -56,27 +74,30 @@ function QrCodeGenerator() {
           />
         </div>
         <div className="col-xs-6 col-sm-6 col-md-6">
-          <button
-            className="btn btn-qrcode btn-primary"
-            onClick={getQRCode}
-          >
+          <button className="btn btn-qrcode btn-primary" onClick={getQRCode}>
             Generate
           </button>
         </div>
       </div>
       <div className="row mt-3">
         <div className="col-6 " id="qrCodeEl">
-          {
-            qrcode && 
-          <>
-            <img src={qrcode} width="100%" />
-            <a id="" className="btn btn-success mt-2" href={qrcode} download="qrcode.png">Download</a>
-          </>
-          }
+          {qrcode && (
+            <>
+              <img src={qrcode} width="100%" />
+              <a
+                id=""
+                className="btn btn-success mt-2"
+                href={qrcode}
+                download="qrcode.png"
+              >
+                Download
+              </a>
+            </>
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default QrCodeGenerator
+export default QrCodeGenerator;

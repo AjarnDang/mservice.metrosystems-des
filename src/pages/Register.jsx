@@ -37,7 +37,7 @@ function Register() {
     event.preventDefault();
     try {
       await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/useradd2", user);
-      navigate("/register");
+      navigate("/qrcodegenerator");
       MySwal.fire({
         html: <i>Register successfully!</i>,
         icon: "success",
