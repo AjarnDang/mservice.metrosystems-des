@@ -83,7 +83,7 @@ function QrCodeGenerator() {
                 </div>
                 <div className="col-md-auto my-2">
                   <button class=" btn btn-primary" onClick={getQRCode}>
-                    Generate
+                    Confirm
                   </button>
                 </div>
               </div>
