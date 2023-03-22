@@ -76,7 +76,7 @@ function QrCodeGenerator() {
                     type="email"
                     name="email"
                     class="form-control"
-                    placeholder="Enter your email"
+                    placeholder="Enter your registered email"
                     onChange={(event) => setEmail(event.target.value)}
                     required
                   />
