@@ -31,7 +31,7 @@ function AdminProfile() {
 
   const fecthAllAdmin = async () => {
     try {
-      const res = await axios.get("http://localhost:3333/admin");
+      const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/admin");
       setAdmin(res.data);
       await parseJwt(token);
       console.log(parseJwt(token));
@@ -74,7 +74,7 @@ function AdminProfile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("http://localhost:3333/updateadmin/"+admin.id, admin);
+      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/updateadmin/"+admin.id, admin);
       navigate("/adminprofile");
       MySwal.fire({
         html: <i>Admin has been updated successfully!</i>,
