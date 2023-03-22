@@ -4,7 +4,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
-import "../assets/css/register.css";
 // import { response } from "express";
 
 function QrCodeGenerator() {
