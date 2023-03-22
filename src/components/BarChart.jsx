@@ -1,15 +1,165 @@
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { mockBarData as data } from "../data/mockData";
+import axios from "axios";
+// import { mockBarData as data } from "../data/mockData";
 
 const BarChart = ({ isDashboard = false }) => {
+
+  //Fecth all user
+  const [userCount, setUserCount] = useState(0);
+  useEffect(() => {
+    const countAllUser = async () => {
+      try {
+        const res = await axios.get("http://localhost:3333/countallusers2");
+        setUserCount(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUser();
+  }, []);
+
+  //Fecth all user reg today
+  const [userCountRegtoday, setUserCountRegtoday] = useState(0);
+  useEffect(() => {
+    const countAllUserRegtoday = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3333/countallusers_regtoday"
+        );
+        setUserCountRegtoday(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUserRegtoday();
+  }, []);
+
+  //Fecth all user if male
+  const [userCountMr, setUserCountMr] = useState(0);
+  useEffect(() => {
+    const countAllUserMr = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3333/countallusers_mr"
+        );
+        setUserCountMr(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUserMr();
+  }, []);
+
+  //Fecth all user if Female 1
+  const [userCountMrs, setUserCountMrs] = useState(0);
+  useEffect(() => {
+    const countAllUserMrs = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3333/countallusers_mrs"
+        );
+        setUserCountMrs(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUserMrs();
+  }, []);
+
+  //Fecth all user if Female 2
+  const [userCountMs, setUserCountMs] = useState(0);
+  useEffect(() => {
+    const countAllUserMs = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3333/countallusers_ms"
+        );
+        setUserCountMs(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUserMs();
+  }, []);
+
+  const mockBarData = [
+    {
+      statistic: "Total Users",
+      "hot dog": 1,
+      "hot dogColor": "hsl(229, 70%, 50%)",
+      Total: userCount,
+      TotalColor: "hsl(340, 70%, 50%)",
+    },
+    {
+      statistic: "Male",
+      "hot dog": 55,
+      "hot dogColor": "hsl(307, 70%, 50%)",
+      Male: userCountMr,
+      MaleColor: "hsl(111, 70%, 50%)",
+    },
+    {
+      statistic: "Female",
+      "hot dog": 109,
+      "hot dogColor": "hsl(72, 70%, 50%)",
+      Female: userCountMrs + userCountMs,
+      FemaleColor: "hsl(106, 70%, 50%)",
+    },
+    {
+      statistic: "Registered",
+      "hot dog": 133,
+      "hot dogColor": "hsl(257, 70%, 50%)",
+      Registered: userCountRegtoday,
+      RegTodayColor: "hsl(326, 70%, 50%)",
+    },
+    // {
+    //   statistic: "AI",
+    //   "hot dog": 81,
+    //   "hot dogColor": "hsl(190, 70%, 50%)",
+    //   Value2: 80,
+    //   Value2Color: "hsl(325, 70%, 50%)",
+    //   Value3: 112,
+    //   Value3Color: "hsl(54, 70%, 50%)",
+    //   Value1: 35,
+    //   Value1Color: "hsl(285, 70%, 50%)",
+    // },
+    // {
+    //   statistic: "AL",
+    //   "hot dog": 66,
+    //   "hot dogColor": "hsl(208, 70%, 50%)",
+    //   Value2: 111,
+    //   Value2Color: "hsl(334, 70%, 50%)",
+    //   Value3: 167,
+    //   Value3Color: "hsl(182, 70%, 50%)",
+    //   Value1: 18,
+    //   Value1Color: "hsl(76, 70%, 50%)",
+    // },
+    // {
+    //   statistic: "AM",
+    //   "hot dog": 80,
+    //   "hot dogColor": "hsl(87, 70%, 50%)",
+    //   Value2: 47,
+    //   Value2Color: "hsl(141, 70%, 50%)",
+    //   Value3: 158,
+    //   Value3Color: "hsl(224, 70%, 50%)",
+    //   Value1: 49,
+    //   Value1Color: "hsl(274, 70%, 50%)",
+    // },
+  ];
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   return (
     <ResponsiveBar
-      data={data}
+      data={mockBarData}
       theme={{
         // added
         axis: {
@@ -39,8 +189,8 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["Value1", "Value2", "Value3", "Value4", "Value5", "Value6"]}
-      indexBy="country"
+      keys={["Total", "Male", "Female","Registered"]}
+      indexBy="statistic"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
@@ -76,7 +226,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "country", // changed
+        legend: isDashboard ? undefined : "statistic", // changed
         legendPosition: "middle",
         legendOffset: 32,
       }}
@@ -121,7 +271,7 @@ const BarChart = ({ isDashboard = false }) => {
       ]}
       role="application"
       barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
+        return e.id + ": " + e.formattedValue + " in statistic: " + e.indexValue;
       }}
     />
   );
