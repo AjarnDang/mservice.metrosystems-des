@@ -4,7 +4,10 @@ import { Box, useTheme } from "@mui/material";
 
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
-
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +21,7 @@ function AdminProfile() {
 
   const MySwal = withReactContent(Swal);
 
-  const [admin, setAdmin] = useState([]);
+  // const [admin, setAdmin] = useState([]);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -28,7 +31,7 @@ function AdminProfile() {
 
   const fecthAllAdmin = async () => {
     try {
-      const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/admin");
+      const res = await axios.get("http://localhost:3333/admin");
       setAdmin(res.data);
       await parseJwt(token);
       console.log(parseJwt(token));
@@ -54,7 +57,7 @@ function AdminProfile() {
     return JSON.parse(jsonPayload);
   }
 
-  const [updateAdmin, setUpdateAdmin] = useState({
+  const [admin, setAdmin] = useState({
     fname: "",
     lname: "",
     username: "",
@@ -65,14 +68,14 @@ function AdminProfile() {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setUpdateAdmin((prev) => ({ ...prev, [name]: value }));
+    setAdmin((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/updateadmin/"+updateAdmin.id, updateAdmin);
-      navigate("/adminsettings");
+      await axios.put("http://localhost:3333/updateadmin/"+admin.id, admin);
+      navigate("/adminprofile");
       MySwal.fire({
         html: <i>Admin has been updated successfully!</i>,
         icon: "success",
@@ -87,20 +90,34 @@ function AdminProfile() {
     }
   };
 
+  // const profilesAuth = (data, email) => {
+  //   console.log(email.email);
+  //   if (data) {
+  //     data.map((item) => {
+  //       if (item.email == email.email) {
+  //         setAdminAuth(item);
+  //         //   console.log(email);
+  //         //   console.log(item);
+  //       }
+  //     });
+  //   }
+  // };
+  // console.log(adminAuth);
+
   const [adminAuth, setAdminAuth] = useState({});
   const profilesAuth = (data, email) => {
     console.log(email.email);
     if (data) {
       data.map((item) => {
         if (item.email == email.email) {
-          setUpdateAdmin(item);
+          setAdmin(item);
           //   console.log(email);
           //   console.log(item);
         }
       });
     }
   };
-  console.log(adminAuth);
+  console.log(admin);
 
   return (
     <div className="app">
@@ -122,86 +139,103 @@ function AdminProfile() {
                   }}
                 />
               </div>
-              <div className="col-xl-7 col-lg-8 col-md-9 col-sm-12 ml-auto d-flex align-items-center">
+              <div className="col-xl-7 col-lg-8 col-md-9 col-sm-12 ml-auto d-flex align-items-center text-truncate">
                 <div>
-                  <h2>{adminAuth.username}</h2>
-                  <h5>
-                    {adminAuth.fname} {adminAuth.lname}
-                  </h5>
+                  <small>Admin ID : {admin.id}</small>
+                  <h2>{admin.username}</h2>
+                  <h5>{admin.fname} {admin.lname}</h5>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card border-0 shadow-sm mt-4">
-            <div class="card-header bg-white p-3">
+          <div className="card border-0 shadow-sm mt-4">
+            <div className="card-header bg-white p-3">
               <h5 className="pb-0 mb-0">General Infomation</h5>
             </div>
-            <div class="card-body">
-              <form>
-                <div className="form-group row">
-                  <div className="col-md-6 col-sm-12">
-                    <label class="form-label">Username</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      name="username" 
-                      value={updateAdmin.username}
-                      onChange={handleChange} 
-                      />
-                  </div>
-                  <div className="col-md-6 col-sm-12">
-                    <label class="form-label">Password</label>
-                    <input 
-                      type="password" 
-                      className="form-control" 
-                      name="password" 
-                      value="" 
+            <div className="card-body">
+            <Form>
+              <Row className="mb-3">
+                <Col lg={6} md={12} sm={12}>
+                  <Form.Group controlId="formBasicUsername">
+                    <Form.Label className="label mt-2">
+                      Username <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="username"
                       onChange={handleChange}
-                      />
-                  </div>
-                </div>
-                <div className="form-group row mt-3">
-                  <div className="col-md-6 col-sm-12">
-                    <label class="form-label">First name</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      name="fname" 
-                      value={updateAdmin.fname}
-                      onChange={handleChange} 
-                      />
-                  </div>
-                  <div className="col-md-6 col-sm-12">
-                    <label class="form-label">Last name</label>
-                    <input 
-                      type="lname" 
-                      className="form-control" 
-                      name="lname" 
-                      value={updateAdmin.lname}
-                      onChange={handleChange} 
-                      />
-                  </div>
-                </div>
-                <div className="form-group row mt-3">
-                  <div className="col-12">
-                    <label class="form-label">Email</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      name="fname" 
-                      value={updateAdmin.email} 
+                      placeholder="johndoe123"
+                      value={admin.username}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+                <Col lg={6} md={12} sm={12}>
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label className="label mt-2">
+                      Password <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="xxxxxxxx"
+                      onChange={handleChange}               
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col lg={6} md={12} sm={12}>
+                  <Form.Group controlId="formBasicFirstname">
+                    <Form.Label className="label mt-2">
+                      First name <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="fname"
                       onChange={handleChange}
-                      />
-                  </div>
-                </div>
-                <button 
-                  onChange={handleSubmit} 
-                  className="btn btn-primary mt-4 px-4"
-                  >
-                   Update
-                  </button>
-              </form>
+                      value={admin.fname}
+                      placeholder="John"                     
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+                <Col lg={6} md={12} sm={12}>
+                  <Form.Group controlId="formBasicLastname">
+                    <Form.Label className="label mt-2">
+                      Last name <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="lname"
+                      onChange={handleChange}
+                      value={admin.lname}
+                      placeholder="Doe"
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col lg={12} md={12} sm={12}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label className="label mt-2">
+                      Email <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      onChange={handleChange}
+                      placeholder="example@gmail.com"
+                      value={admin.email}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Button onClick={handleSubmit}>Update</Button>
+            </Form>
             </div>
           </div>
         </Box>
