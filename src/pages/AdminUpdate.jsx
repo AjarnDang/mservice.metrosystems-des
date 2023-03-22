@@ -15,7 +15,6 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-
 function AdminUpdate() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -23,8 +22,8 @@ function AdminUpdate() {
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
   const location = useLocation();
-  
-  const adminId = location.pathname.split("/")[2]
+
+  const adminId = location.pathname.split("/")[2];
   const { id } = useParams();
 
   const [admin, setAdmin] = useState({
@@ -44,7 +43,7 @@ function AdminUpdate() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/updateadmin/"+adminId, admin);
+      await axios.put("http://localhost:3333/updateadmin/" + adminId, admin);
       navigate("/adminsettings");
       MySwal.fire({
         html: <i>Admin has been updated successfully!</i>,
@@ -53,16 +52,16 @@ function AdminUpdate() {
         window.location.reload();
       });
     } catch (err) {
-        MySwal.fire({
+      MySwal.fire({
         html: <i>Fail to update Admin!</i>,
         icon: "error",
-        })
+      });
     }
   };
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://charming-goat-flannel-nightgown.cyclic.app/admin/${id}`);
+      const res = await axios.get(`http://localhost:3333/admin/${id}`);
       setAdmin(res.data.data);
       console.log(res.data);
     } catch (err) {
@@ -74,6 +73,12 @@ function AdminUpdate() {
     fetchData();
   }, []);
 
+  const savedTime = admin.created_at;
+  const formatedDate = new Date(savedTime).toLocaleString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
@@ -83,13 +88,18 @@ function AdminUpdate() {
           <div className="row my-4">
             <div className="col-lg-6 col-md-12">
               <h1>Settings</h1>
-              
             </div>
           </div>
           <div className="card border-0 shadow-sm p-4 w-100">
             <Form>
-              <span className="h3 span-h1">Update Admin</span>
-              <span className="span-user-id">User ID : {id}</span>
+              <div className="row">
+                <div className="col-xl-6 col-md-12 text-start">
+                  <span className="h3 span-h1">Update Admin</span>
+                  <span className="span-user-id">User ID : {id}</span>
+                </div>
+                <div className="col-xl-6 col-md-12 text-end">Created : {formatedDate}</div>
+              </div>
+
               <hr />
               <Row className="mb-3">
                 <Col lg={6} md={12} sm={12}>
@@ -116,7 +126,7 @@ function AdminUpdate() {
                       type="password"
                       name="password"
                       placeholder="xxxxxxxx"
-                      onChange={handleChange}               
+                      onChange={handleChange}
                     />
                   </Form.Group>
                 </Col>
@@ -132,7 +142,7 @@ function AdminUpdate() {
                       name="fname"
                       onChange={handleChange}
                       value={admin.fname}
-                      placeholder="John"                     
+                      placeholder="John"
                       required
                     />
                   </Form.Group>
@@ -176,7 +186,7 @@ function AdminUpdate() {
         </Box>
       </main>
     </div>
-  )
+  );
 }
 
-export default AdminUpdate
+export default AdminUpdate;
