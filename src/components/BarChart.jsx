@@ -12,7 +12,7 @@ const BarChart = ({ isDashboard = false }) => {
   useEffect(() => {
     const countAllUser = async () => {
       try {
-        const res = await axios.get("http://localhost:3333/countallusers2");
+        const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers2");
         setUserCount(res.data.count);
         console.log(res.data.count);
       } catch (err) {
@@ -28,7 +28,7 @@ const BarChart = ({ isDashboard = false }) => {
     const countAllUserRegtoday = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3333/countallusers_regtoday"
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_regtoday"
         );
         setUserCountRegtoday(res.data.count);
         console.log(res.data.count);
@@ -45,7 +45,7 @@ const BarChart = ({ isDashboard = false }) => {
     const countAllUserMr = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3333/countallusers_mr"
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mr"
         );
         setUserCountMr(res.data.count);
         console.log(res.data.count);
@@ -62,7 +62,7 @@ const BarChart = ({ isDashboard = false }) => {
     const countAllUserMrs = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3333/countallusers_mrs"
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mrs"
         );
         setUserCountMrs(res.data.count);
         console.log(res.data.count);
@@ -79,7 +79,7 @@ const BarChart = ({ isDashboard = false }) => {
     const countAllUserMs = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3333/countallusers_ms"
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_ms"
         );
         setUserCountMs(res.data.count);
         console.log(res.data.count);
@@ -93,7 +93,7 @@ const BarChart = ({ isDashboard = false }) => {
   const mockBarData = [
     {
       statistic: "Total Users",
-      "hot dog": 1,
+      "hot dog": 50,
       "hot dogColor": "hsl(229, 70%, 50%)",
       Total: userCount,
       TotalColor: "hsl(340, 70%, 50%)",
