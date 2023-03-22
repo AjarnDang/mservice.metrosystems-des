@@ -56,6 +56,14 @@ function AdminSettings() {
   var num = "0";
   num++;
 
+  const savedTime = admin.created_at;
+  const formatedDate = new Date(savedTime).toLocaleString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+  console.log(formatedDate);
+
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
@@ -93,7 +101,7 @@ function AdminSettings() {
                       <td>{admin.username}</td>
                       <td>{admin.fname} {admin.lname}</td>
                       <td>{admin.email}</td>
-                      <td>{admin.created_at}</td>
+                      <td>{formatedDate}</td>
                       <td>
                         <button 
                           className="edit-button btn btn-warning" 
