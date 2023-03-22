@@ -91,7 +91,12 @@ function QrCodeGenerator() {
                 <div className="col-md-auto" id="qrCodeEl">
                   {qrcode && (
                     <>
-                      <img src={qrcode} width="500px" className="border-1" />
+                      <img 
+                        src={qrcode} 
+                        width="500px" 
+                        className="border-1" 
+                        style={{border:"1px solid black"}} 
+                        />
                       <br />
                       <a
                         id=""
