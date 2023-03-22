@@ -19,10 +19,8 @@ const UserUpdate = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isSidebar, setIsSidebar] = useState(true);
-
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-
   const location = useLocation();
 
   const userId = location.pathname.split("/")[2];
@@ -50,6 +48,7 @@ const UserUpdate = () => {
     event.preventDefault();
     try {
       await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/usersupdate/" + userId, user);
+      console.log(userId)
       navigate("/UserInfomation");
       MySwal.fire({
         html: <i>Updated successfully!</i>,
@@ -65,11 +64,10 @@ const UserUpdate = () => {
     }
   };
 
-  const [userdetail, setUserdetail] = useState([]);
   const fetchData = async () => {
     try {
       const res = await axios.get(`https://charming-goat-flannel-nightgown.cyclic.app/users/${id}`);
-      setUserdetail(res.data.data);
+      setUser(res.data.data);
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -120,7 +118,7 @@ const UserUpdate = () => {
                         <Form.Select
                           name="title"
                           onChange={handleChange}
-                          value={userdetail.title}
+                          value={user.title}
                           required                        
                         >
                           <option value="Mr.">Mr.</option>
@@ -138,8 +136,8 @@ const UserUpdate = () => {
                           type="text"
                           name="fname"
                           onChange={handleChange}
-                          value={userdetail.fname}
-                          placeholder="John"
+                          value={user.fname}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -152,8 +150,8 @@ const UserUpdate = () => {
                           type="text"
                           name="lname"
                           onChange={handleChange}
-                          value={userdetail.lname}
-                          placeholder="Doe"
+                          value={user.lname}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -167,8 +165,8 @@ const UserUpdate = () => {
                           type="number"
                           name="age"
                           onChange={handleChange}
-                          value={userdetail.age}
-                          placeholder="25"
+                          value={user.age}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -181,8 +179,8 @@ const UserUpdate = () => {
                           type="email"
                           name="email"
                           onChange={handleChange}
-                          value={userdetail.email}
-                          placeholder="example@gmail.com"
+                          value={user.email}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -198,10 +196,10 @@ const UserUpdate = () => {
                           type="text"
                           name="phone"
                           onChange={handleChange}
-                          value={userdetail.phone}
-                          placeholder="08XXXXXXXX"
+                          value={user.phone}
                           maxLength={10}
                           minLength={10}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -214,8 +212,8 @@ const UserUpdate = () => {
                           type="text"
                           name="jobtitle"
                           onChange={handleChange}
-                          value={userdetail.jobtitle}
-                          placeholder="Senior Engineer"
+                          value={user.jobtitle}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -231,8 +229,8 @@ const UserUpdate = () => {
                           type="text"
                           name="company"
                           onChange={handleChange}
-                          value={userdetail.company}
-                          placeholder="Example Company Co.Ltd"
+                          value={user.company}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -249,8 +247,8 @@ const UserUpdate = () => {
                           rows={8}
                           name="description"
                           onChange={handleChange}
-                          value={userdetail.description}
-                          placeholder="Interested in OEE to productive improvement"
+                          value={user.description}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -276,7 +274,7 @@ const UserUpdate = () => {
               <div className="card border-0 shadow-sm p-4 d-flex">
                 <div className="img-wrapper">
                   <img
-                    src={userdetail.qrcode}
+                    src="https://www.mindphp.com/forums/download/file.php?id=560"
                     className="img-fluid"
                   />
                 </div>
