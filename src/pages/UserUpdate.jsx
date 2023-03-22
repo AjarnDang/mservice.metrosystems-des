@@ -47,7 +47,7 @@ const UserUpdate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put("http://localhost:3333/usersupdate/" + userId, user);
+      await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/usersupdate/" + userId, user);
       console.log(userId);
       navigate("/userinfomation");
       MySwal.fire({
@@ -66,7 +66,7 @@ const UserUpdate = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:3333/users/${id}`);
+      const res = await axios.get(`https://charming-goat-flannel-nightgown.cyclic.app/users/${id}`);
       setUser(res.data.data);
       console.log(res.data);
     } catch (err) {
