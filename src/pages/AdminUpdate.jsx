@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { tokens } from "../theme";
 import { Box, useTheme } from "@mui/material";
+import axios from "axios";
 
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -12,16 +14,14 @@ import Col from "react-bootstrap/Col";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+
 
 function AdminUpdate() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isSidebar, setIsSidebar] = useState(true);
-
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
-
   const location = useLocation();
   
   const adminId = location.pathname.split("/")[2]
@@ -60,11 +60,10 @@ function AdminUpdate() {
     }
   };
 
-  const [admindetail, setAdmindetail] = useState([]);
   const fetchData = async () => {
     try {
       const res = await axios.get(`https://charming-goat-flannel-nightgown.cyclic.app/admin/${id}`);
-      setAdmindetail(res.data.data);
+      setAdmin(res.data.data);
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -103,7 +102,7 @@ function AdminUpdate() {
                       name="username"
                       onChange={handleChange}
                       placeholder="johndoe123"
-                      value={admindetail.username}
+                      value={admin.username}
                       required
                     />
                   </Form.Group>
@@ -132,7 +131,7 @@ function AdminUpdate() {
                       type="text"
                       name="fname"
                       onChange={handleChange}
-                      value={admindetail.fname}
+                      value={admin.fname}
                       placeholder="John"                     
                       required
                     />
@@ -147,7 +146,7 @@ function AdminUpdate() {
                       type="text"
                       name="lname"
                       onChange={handleChange}
-                      value={admindetail.lname}
+                      value={admin.lname}
                       placeholder="Doe"
                       required
                     />
@@ -165,7 +164,7 @@ function AdminUpdate() {
                       name="email"
                       onChange={handleChange}
                       placeholder="example@gmail.com"
-                      value={admindetail.email}
+                      value={admin.email}
                       required
                     />
                   </Form.Group>
