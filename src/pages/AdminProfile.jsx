@@ -19,7 +19,6 @@ function AdminProfile() {
   const MySwal = withReactContent(Swal);
 
   const [admin, setAdmin] = useState([]);
-  const [adminAuth, setAdminAuth] = useState({});
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -29,12 +28,10 @@ function AdminProfile() {
 
   const fecthAllAdmin = async () => {
     try {
-      const res = await axios.get(
-        "https://charming-goat-flannel-nightgown.cyclic.app/admin"
-      );
+      const res = await axios.get("http://localhost:3333/admin");
       setAdmin(res.data);
       await parseJwt(token);
-	    console.log(parseJwt(token))
+      console.log(parseJwt(token));
       profilesAuth(res.data, parseJwt(token));
     } catch (err) {
       console.log(err);
@@ -57,54 +54,54 @@ function AdminProfile() {
     return JSON.parse(jsonPayload);
   }
 
+  const [updateAdmin, setUpdateAdmin] = useState({
+    fname: "",
+    lname: "",
+    username: "",
+    password: "",
+    email: "",
+  });
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setUpdateAdmin((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.put("http://localhost:3333/updateadmin/"+updateAdmin.id, updateAdmin);
+      navigate("/adminsettings");
+      MySwal.fire({
+        html: <i>Admin has been updated successfully!</i>,
+        icon: "success",
+      }).then((value) => {
+        window.location.reload();
+      });
+    } catch (err) {
+        MySwal.fire({
+        html: <i>Fail to update Admin!</i>,
+        icon: "error",
+        })
+    }
+  };
+
+  const [adminAuth, setAdminAuth] = useState({});
   const profilesAuth = (data, email) => {
     console.log(email.email);
-      if (data) {
-        data.map((item) => {
-          if (item.email == email.email) {
-            setAdminAuth(item);
+    if (data) {
+      data.map((item) => {
+        if (item.email == email.email) {
+          setUpdateAdmin(item);
           //   console.log(email);
-      //   console.log(item);
-          }
-        });
-      }
-    };
-    console.log(adminAuth)
+          //   console.log(item);
+        }
+      });
+    }
+  };
+  console.log(adminAuth);
 
-
-    const [updateAdmin, setUpdateAdmin] = useState({
-      fname: "",
-      lname: "",
-      username: "",
-      password: "",
-      email: "",
-    });
-  
-    const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setUpdateAdmin((prev) => ({ ...prev, [name]: value }));
-    };
-  
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/updateadmin/"+adminAuth.id, updateAdmin);
-        navigate("/adminsettings");
-        MySwal.fire({
-          html: <i>Admin has been updated successfully!</i>,
-          icon: "success",
-        }).then((value) => {
-          window.location.reload();
-        });
-      } catch (err) {
-          MySwal.fire({
-          html: <i>Fail to update Admin!</i>,
-          icon: "error",
-          })
-      }
-    };
-    
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
@@ -149,7 +146,7 @@ function AdminProfile() {
                       type="text" 
                       className="form-control" 
                       name="username" 
-                      value={adminAuth.username}
+                      value={updateAdmin.username}
                       onChange={handleChange} 
                       />
                   </div>
@@ -171,7 +168,7 @@ function AdminProfile() {
                       type="text" 
                       className="form-control" 
                       name="fname" 
-                      value={adminAuth.fname}
+                      value={updateAdmin.fname}
                       onChange={handleChange} 
                       />
                   </div>
@@ -181,7 +178,7 @@ function AdminProfile() {
                       type="lname" 
                       className="form-control" 
                       name="lname" 
-                      value={adminAuth.lname}
+                      value={updateAdmin.lname}
                       onChange={handleChange} 
                       />
                   </div>
@@ -193,7 +190,7 @@ function AdminProfile() {
                       type="text" 
                       className="form-control" 
                       name="fname" 
-                      value={adminAuth.email} 
+                      value={updateAdmin.email} 
                       onChange={handleChange}
                       />
                   </div>
