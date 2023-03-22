@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { tokens } from "../theme";
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
-import axios from "axios";
 
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
 import BarChart from "../components/BarChart";

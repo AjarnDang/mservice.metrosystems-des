@@ -4,15 +4,10 @@ import { Box, useTheme } from "@mui/material";
 
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 
 function AdminProfileAPI() {
   const theme = useTheme();

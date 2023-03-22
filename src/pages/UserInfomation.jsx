@@ -18,7 +18,6 @@ import Sidebar from "../components/Sidebar";
 
 import { tokens } from "../theme";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import LaunchIcon from "@mui/icons-material/Launch";
 import Swal from "sweetalert2";
