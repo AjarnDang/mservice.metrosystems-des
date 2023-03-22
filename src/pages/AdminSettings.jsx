@@ -25,7 +25,7 @@ function AdminSettings() {
   useEffect(() => {
     const fecthAllAdmin = async () => {
       try {
-        const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/admin");
+        const res = await axios.get("http://localhost:3333/admin");
         setAdmin(res.data);
       } catch (err) {
         console.log(err);
@@ -37,7 +37,7 @@ function AdminSettings() {
   //Delete admin
   const handleDelete = async (id) => {
     try {
-      await axios.delete("https://charming-goat-flannel-nightgown.cyclic.app/deleteadmin/" +id);
+      await axios.delete("http://localhost:3333/deleteadmin/" +id);
       MySwal.fire({
         html: <i>Admin has been added successfully!</i>,
         icon: "success",
@@ -55,14 +55,6 @@ function AdminSettings() {
   // num is converted to a number then incremented.
   var num = "0";
   num++;
-
-  const savedTime = admin.created_at;
-  const formatedDate = new Date(savedTime).toLocaleString("en-US", {
-    month: "short",
-    day: "2-digit",
-    year: "numeric",
-  });
-  console.log(formatedDate);
 
   return (
     <div className="app">
@@ -83,7 +75,7 @@ function AdminSettings() {
           </div>
           <div className="card border-0 shadow-sm p-4">
             <div className="all-admin" key={admin.id}>
-              <table class="table table-borderless">
+              <table className="table table-borderless">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -94,7 +86,14 @@ function AdminSettings() {
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                {admin.map((admin) => (
+                {admin.map((admin) => { 
+                    const savedTime = admin.created_at;
+                    const formatedDate = new Date(savedTime).toLocaleString("en-US", {
+                      month: "short",
+                      day: "2-digit",
+                      year: "numeric",
+                    }); 
+                  return (          
                   <tbody>
                     <tr>
                       <td>{num++}</td>
@@ -122,7 +121,7 @@ function AdminSettings() {
                       </td>
                     </tr>
                   </tbody>
-                ))}
+                )})}
               </table>
             </div>
           </div>
