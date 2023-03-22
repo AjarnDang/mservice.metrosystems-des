@@ -89,7 +89,7 @@ function AdminProfile() {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        await axios.put("http://localhost:3333/updateadmin/"+adminAuth.id, updateAdmin);
+        await axios.put("https://charming-goat-flannel-nightgown.cyclic.app/updateadmin/"+adminAuth.id, updateAdmin);
         navigate("/adminsettings");
         MySwal.fire({
           html: <i>Admin has been updated successfully!</i>,

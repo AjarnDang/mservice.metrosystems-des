@@ -23,7 +23,7 @@ const Dashboard = () => {
     useEffect(() => {
       const countAllUser = async () => {
         try {
-          const res = await axios.get("http://localhost:3333/countallusers2");
+          const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers2");
           setUserCount(res.data.count);
           console.log(res.data.count)
         } catch (err) {
@@ -38,7 +38,7 @@ const Dashboard = () => {
     useEffect(() => {
       const countAllUserActive = async () => {
         try {
-          const res = await axios.get("http://localhost:3333/countallusers_active");
+          const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers_active");
           setUserCountActive(res.data.count);
           console.log(res.data.count)
         } catch (err) {
@@ -53,7 +53,7 @@ const Dashboard = () => {
     useEffect(() => {
       const countAllUserHasQr = async () => {
         try {
-          const res = await axios.get("http://localhost:3333/countallusers_hasqrcode");
+          const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers_hasqrcode");
           setUserCountHasQR(res.data.count);
           console.log(res.data.count)
         } catch (err) {
@@ -68,7 +68,7 @@ const Dashboard = () => {
     useEffect(() => {
       const countAllUserRegtoday = async () => {
         try {
-          const res = await axios.get("http://localhost:3333/countallusers_regtoday");
+          const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers_regtoday");
           setUserCountRegtoday(res.data.count);
           console.log(res.data.count)
         } catch (err) {
