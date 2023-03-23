@@ -114,7 +114,7 @@ const UserUpdate = () => {
               <span className="h1 span-h1">Register Infomation</span>
               <span className="span-user-id">User ID : {id}</span>
             </div>
-            <div className="col-lg-6 col-md-12 right-button-header">
+            {/* <div className="col-lg-6 col-md-12 right-button-header">
               <Button
                 href="./RegisterAdmin"
                 variant="contained"
@@ -127,7 +127,7 @@ const UserUpdate = () => {
               >
                 Print QR Code
               </Button>
-            </div>
+            </div> */}
           </div>
 
           <div className="row w-100">
@@ -298,6 +298,21 @@ const UserUpdate = () => {
             <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 mt-4">
               <div className="card border-0 shadow-sm p-4 d-flex">
                 <div className="img-wrapper">{user_qrcode}</div>
+                <div className="text-center mt-3">
+                <a
+                href={user.qrcode}
+                download="qrcode.png"
+                className="btn btn-primary border-0"
+                style={{
+                  color: "#fff",
+                  backgroundColor: colors.blueAccent[600],
+                  boxShadow: "none",
+                  padding: "8px 2em",
+                }}
+              >
+                Download QR Code
+              </a>
+                </div>
                 <span
                   style={{
                     textAlign: "center",
