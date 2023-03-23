@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, useTheme, Button } from "@mui/material";
-
 import axios from "axios";
-
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,11 +9,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { CSVLink } from "react-csv";
-
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
-
 import { tokens } from "../theme";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import { Link } from "react-router-dom";
@@ -47,7 +42,7 @@ const UserInfomation = () => {
   //Delete User
   const handleDelete = async (id) => {
     try {
-      await axios.delete("https://charming-goat-flannel-nightgown.cyclic.app/deleteuser/"+ id);
+      await axios.delete("https://charming-goat-flannel-nightgown.cyclic.app/deleteuser/" + id);
       MySwal.fire({
         html: <i>User has been deleted successfully!</i>,
         icon: "success",
@@ -63,28 +58,39 @@ const UserInfomation = () => {
   };
 
   const columns = [
-    { field: "id", label: "#",
+    {
+      field: "id",
+      label: "#",
       renderCell: ({ row: { id } }) => {
         return (
-          <Link to={{ pathname:"/userupdate/"+user.id,}}
-            style={{ textDecoration: "none", color: colors.grey[100] }}>
-            {id}{" "}<LaunchIcon style={{ opacity: "0.5", margin: "0 0 10px 5px", width: "13px" }}/>
+          <Link
+            to={{ pathname: "/userupdate/" + user.id }}
+            style={{ textDecoration: "none", color: colors.grey[100] }}
+          >
+            {id}{" "}
+            <LaunchIcon
+              style={{ opacity: "0.5", margin: "0 0 10px 5px", width: "13px" }}
+            />
           </Link>
         );
       },
     },
-    { field: "title",   label: "Title",       flex: 0, cellClassName: "name-column--cell"},
-    { field: "fname",   label: "First Name",  flex: 0, cellClassName: "name-column--cell"},
-    { field: "lname",   label: "Last Name",   flex: 1, cellClassName: "name-column--cell"},
-    { field: "age",     label: "Age",         flex: 0, type: "number"},
-    { field: "phone",   label: "Phone Number",flex: 1 },
-    { field: "email",   label: "Email",       flex: 1 },
-    { field: "jobtitle",label: "Job Title",   flex: 0 },
-    { field: "company", label: "Company",     flex: 0 },
-    { field: "status",  label: "Status",      flex: 0 },
-    { field: "action",  label: "Action",      flex: 1 },
+    {
+      field: "title",
+      label: "Full Name",
+      flex: 0,
+      cellClassName: "name-column--cell",
+    },
+    { field: "age", label: "Age", flex: 0, type: "number" },
+    { field: "phone", label: "Phone Number", flex: 1 },
+    { field: "email", label: "Email", flex: 1 },
+    // { field: "jobtitle",label: "Job Title",   flex: 0 },
+    { field: "company", label: "Company", flex: 0 },
+    { field: "status", label: "Status", flex: 1 },
+    { field: "checked_in", label: "Checked in", flex: 0 },
+    { field: "checked_out", label: "Checked out", flex: 0 },
+    { field: "action", label: "Action", flex: 1 },
   ];
-
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -97,7 +103,6 @@ const UserInfomation = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
 
   return (
     <div className="app">
@@ -141,7 +146,8 @@ const UserInfomation = () => {
                         <TableCell
                           key={column.id}
                           align={column.align}
-                          style={{ minWidth: column.minWidth }} >
+                          style={{ minWidth: column.minWidth }}
+                        >
                           {column.label}
                         </TableCell>
                       ))}
@@ -156,38 +162,79 @@ const UserInfomation = () => {
                       .map((user, index) => {
                         let ustatus = "";
                         if (user.status === 0) {
-                          ustatus = <span className='text-muted'>Not registered</span>
+                          ustatus = (
+                            <span className="bg-secondary text-white p-2 rounded">
+                              Not registered
+                            </span>
+                          );
                         } else if (user.status === 1) {
-                          ustatus = <span className='text-success'>Signed in</span>
+                          ustatus = (
+                            <span className="bg-success text-white p-2 rounded">
+                              Signed in
+                            </span>
+                          );
                         } else {
-                          ustatus = <span className='text-danger'>Signed out</span>
+                          ustatus = (
+                            <span className="bg-danger text-white p-2 rounded">
+                              Signed out
+                            </span>
+                          );
                         }
+
+                        let ucheck_in = "";
+                        let savedTime1 = user.checked_in;
+                        let formatedDate1 = new Date(savedTime1).toLocaleString();
+                        if (formatedDate1 === '1/1/1970, 7:00:00 AM') {
+                          ucheck_in = <span>Unchecked in</span>
+                        } else {
+                          ucheck_in = formatedDate1
+                        }
+
+                        let ucheck_out = "";
+                        let savedTime2 = user.checked_out;
+                        let formatedDate2 = new Date(savedTime2).toLocaleString();
+                        if (formatedDate2 === '1/1/1970, 7:00:00 AM') {
+                          ucheck_out = <span>Unchecked out</span>
+                        } else {
+                          ucheck_out = formatedDate2
+                        }
+
                         return (
                           <TableRow>
-                            <TableCell>{(rowsPerPage*page) + 1 + index}</TableCell>
-                            <TableCell>{user.title}</TableCell>
-                            <TableCell>{user.fname}</TableCell>
-                            <TableCell>{user.lname}</TableCell>
+                            <TableCell>
+                              {rowsPerPage * page + 1 + index}
+                            </TableCell>
+                            <TableCell>
+                              {user.title} {user.fname} {user.lname}
+                            </TableCell>
                             <TableCell>{user.age}</TableCell>
                             <TableCell>{user.phone}</TableCell>
                             <TableCell>{user.email}</TableCell>
-                            <TableCell style={{ minWidth: "100px" }}>{user.jobtitle}</TableCell>
+                            {/* <TableCell style={{ minWidth: "100px" }}>{user.jobtitle}</TableCell> */}
                             <TableCell>{user.company}</TableCell>
                             <TableCell>{ustatus}</TableCell>
+                            <TableCell>{ucheck_in}</TableCell>
+                            <TableCell>{ucheck_out}</TableCell>
                             <TableCell style={{ minWidth: "170px" }}>
                               <button
                                 className="edit-button btn btn-warning"
-                                style={{ marginRight: "7px", }}>
+                                style={{ marginRight: "7px" }}
+                              >
                                 <Link
                                   to={`/UserUpdate/${user.id}`}
-                                  style={{ textDecoration: "none", color: "#000",}} >
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "#000",
+                                  }}
+                                >
                                   Edit
                                 </Link>
                               </button>
                               <button
                                 className="delete-button btn btn-danger"
-                                onClick={() => handleDelete(user.id)}>
-                                  Delete
+                                onClick={() => handleDelete(user.id)}
+                              >
+                                Delete
                               </button>
                             </TableCell>
                           </TableRow>
