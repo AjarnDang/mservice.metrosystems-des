@@ -111,7 +111,7 @@ function QrCodeGenerator() {
                 </div>
               </div>
             </div>
-            <div className="card-footer bg-white">
+            <div className="card-footer bg-white px-3 py-2">
               <a href="/register" class="text-decoration-none">
                 Go back
               </a>
