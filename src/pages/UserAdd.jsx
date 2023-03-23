@@ -70,7 +70,7 @@ const UserAdd = () => {
             <div className="col-lg-6 col-md-12">
               <h1>Registration</h1>
             </div>
-            <div className="col-lg-6 col-md-12 right-button-header right-button-import">
+            {/* <div className="col-lg-6 col-md-12 right-button-header right-button-import">
               <button
                 className="border-0 bg-transparent"
                 style={{ color: colors.grey[100] }}
@@ -78,7 +78,7 @@ const UserAdd = () => {
                 <FileDownloadIcon style={{ width: "28px", height: "28px" }} />{" "}
                 Import User
               </button>
-            </div>
+            </div> */}
           </div>
 
           <div className="card border-0 shadow-sm p-4">
