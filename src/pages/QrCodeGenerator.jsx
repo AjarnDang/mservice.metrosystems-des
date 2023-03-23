@@ -66,9 +66,9 @@ function QrCodeGenerator() {
       <div className="container">
         <div className="signup-form d-flex align-items-center justify-content-center">
           <div className="card border-0">
-            <div className="card-header">
-              <h3 className="mb-0">QR Code Generator</h3>
-            </div>
+            <h1 className="text-center text-white font-weight-bolder">
+              QR Code Generator
+            </h1>
             <div className="card-body p-3">
               <div class="form-group row">
                 <div class="col-md-auto my-2">
@@ -91,12 +91,12 @@ function QrCodeGenerator() {
                 <div className="col-md-auto" id="qrCodeEl">
                   {qrcode && (
                     <>
-                      <img 
-                        src={qrcode} 
-                        width="500px" 
-                        className="border-1" 
-                        style={{border:"1px solid black"}} 
-                        />
+                      <img
+                        src={qrcode}
+                        width="500px"
+                        className="border-1"
+                        style={{ border: "1px solid black" }}
+                      />
                       <br />
                       <a
                         id=""
@@ -110,6 +110,11 @@ function QrCodeGenerator() {
                   )}
                 </div>
               </div>
+            </div>
+            <div className="card-footer">
+              <a href="/register" class="text-decoration-none">
+                Go back
+              </a>
             </div>
           </div>
         </div>
