@@ -87,7 +87,7 @@ function AdminUpdate() {
         <Box m="30px">
           <div className="row my-4">
             <div className="col-lg-6 col-md-12">
-              <h1>Settings</h1>
+              <h1>Admin Panel</h1>
             </div>
           </div>
           <div className="card border-0 shadow-sm p-4 w-100">
