@@ -11,7 +11,7 @@ function QrCodeGenerator() {
   const [email, setEmail] = useState("");
   const [qrcode, setQrcode] = useState("");
   const [user, setUser] = useState("");
-
+  const CurrYear = new Date().getFullYear();
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
 
@@ -112,6 +112,9 @@ function QrCodeGenerator() {
               </div>
             </div>
           </div>
+        </div>
+        <div id="copy-right">
+          © Copyright Metro Systems Corporation Plc {CurrYear}.
         </div>
       </div>
     </body>
