@@ -8,11 +8,11 @@ import axios from "axios";
 const BarChart = ({ isDashboard = false }) => {
 
   //Fecth all user
-  const [userCount, setUserCount] = useState(0);
+  const [userActive, setUserCount] = useState(0);
   useEffect(() => {
     const countAllUser = async () => {
       try {
-        const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers2");
+        const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers_active");
         setUserCount(res.data.count);
         console.log(res.data.count);
       } catch (err) {
@@ -23,12 +23,12 @@ const BarChart = ({ isDashboard = false }) => {
   }, []);
 
   //Fecth all user reg today
-  const [userCountRegtoday, setUserCountRegtoday] = useState(0);
+  const [userUnActive, setUserCountRegtoday] = useState(0);
   useEffect(() => {
     const countAllUserRegtoday = async () => {
       try {
         const res = await axios.get(
-          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_regtoday"
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_unactive"
         );
         setUserCountRegtoday(res.data.count);
         console.log(res.data.count);
@@ -92,11 +92,18 @@ const BarChart = ({ isDashboard = false }) => {
 
   const mockBarData = [
     {
-      statistic: "Total Users",
+      statistic: "Checked_in",
       "hot dog": 50,
       "hot dogColor": "hsl(229, 70%, 50%)",
-      Total: userCount,
+      Total: userActive,
       TotalColor: "hsl(340, 70%, 50%)",
+    },
+    {
+      statistic: "Checked_out",
+      "hot dog": 133,
+      "hot dogColor": "hsl(257, 70%, 50%)",
+      Registered: userUnActive,
+      RegTodayColor: "hsl(326, 70%, 50%)",
     },
     {
       statistic: "Male",
@@ -112,13 +119,7 @@ const BarChart = ({ isDashboard = false }) => {
       Female: userCountMrs + userCountMs,
       FemaleColor: "hsl(106, 70%, 50%)",
     },
-    {
-      statistic: "Registered",
-      "hot dog": 133,
-      "hot dogColor": "hsl(257, 70%, 50%)",
-      Registered: userCountRegtoday,
-      RegTodayColor: "hsl(326, 70%, 50%)",
-    },
+    
     // {
     //   statistic: "AI",
     //   "hot dog": 81,
@@ -189,7 +190,7 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["Total", "Male", "Female","Registered"]}
+      keys={["Checked_in","Checked_out", "Male", "Female"]}
       indexBy="statistic"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
