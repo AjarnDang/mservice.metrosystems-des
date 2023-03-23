@@ -64,7 +64,7 @@ function AdminSettings() {
         <Box m="30px">
           <div className="row my-4">
             <div className="col-lg-6 col-md-12 mb-2">
-              <span className="h1 span-h1">Settings</span>
+              <span className="h1 span-h1">Admin Panel</span>
             </div>
             <div className="col-lg-6 col-md-12 right-button-header">
               <Button href="/adminadd" variant="contained" style={{ color: "#fff", backgroundColor: colors.blueAccent[600], boxShadow: "none",}}>
