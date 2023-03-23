@@ -7,21 +7,21 @@ import axios from "axios";
 
 const BarChart = ({ isDashboard = false }) => {
 
-  //Fecth all user
-  const [userActive, setUserCount] = useState(0);
+  //Fecth all user active
+  const [userCountActive, setUserCountActive] = useState(0);
   useEffect(() => {
-    const countAllUser = async () => {
+    const countAllUserActive = async () => {
       try {
         const res = await axios.get("https://charming-goat-flannel-nightgown.cyclic.app/countallusers_active");
-        setUserCount(res.data.count);
-        console.log(res.data.count);
+        setUserCountActive(res.data.count);
+        console.log(res.data.count)
       } catch (err) {
         console.log(err);
       }
     };
-    countAllUser();
-  }, []);
-
+    countAllUserActive();
+  }, []); 
+  
   //Fecth all user reg today
   const [userUnActive, setUserCountRegtoday] = useState(0);
   useEffect(() => {
@@ -95,7 +95,7 @@ const BarChart = ({ isDashboard = false }) => {
       statistic: "Checked_in",
       "hot dog": 50,
       "hot dogColor": "hsl(229, 70%, 50%)",
-      Total: userActive,
+      Total: userCountActive,
       TotalColor: "hsl(340, 70%, 50%)",
     },
     {
