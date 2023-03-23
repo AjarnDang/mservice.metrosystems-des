@@ -197,11 +197,20 @@ function Register() {
                 </Form.Group>
               </Col>
             </Row>
-            <div className="text-center">
-              <Button variant="primary" type="submit" className="reg-submit">
-                Submit
-              </Button>
-            </div>
+            <Row className="mb-3 reg-row">
+              <Col>           
+                  <button
+                    type="submit"
+                    className="btn btn-success px-4"
+                    style={{marginRight:"10px"}}
+                  >
+                    Submit
+                  </button>     
+                  <a href="/qrcodegenerator" className="btn text-primary text-decoration-none">
+                    Get QR Code
+                </a>       
+              </Col>                           
+            </Row>
           </Form>
         </div>
         <div
