@@ -114,7 +114,7 @@ const Dashboard = () => {
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">
                 <div className="d-flex justify-content-between">
                   <div>
-                    <span className="header-card-dashboard">Active</span>
+                    <span className="header-card-dashboard">Checked in</span>
                     <h1 className="fw-bold lh-1">{userCountActive}</h1>
                   </div>
                   <div className="align-middle mt-3">
