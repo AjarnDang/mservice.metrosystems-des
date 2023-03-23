@@ -301,7 +301,7 @@ const UserUpdate = () => {
                 <div className="text-center mt-3">
                 <a
                 href={user.qrcode}
-                download="qrcode.png"
+                download="qrcode-mservice.metrosystems-des.png"
                 className="btn btn-primary border-0"
                 style={{
                   color: "#fff",
