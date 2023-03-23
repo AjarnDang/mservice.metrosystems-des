@@ -63,7 +63,7 @@ const UserInfomation = () => {
   };
 
   const columns = [
-    { field: "id", label: "ID",
+    { field: "id", label: "#",
       renderCell: ({ row: { id } }) => {
         return (
           <Link to={{ pathname:"/userupdate/"+user.id,}}
