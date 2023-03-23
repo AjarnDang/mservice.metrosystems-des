@@ -79,6 +79,7 @@ const UserUpdate = () => {
   }, []);
 
   let user_qrcode = "";
+  let user_download = "";
   if (user.qrcode === "") {
     user_qrcode = (
       <div
@@ -88,11 +89,27 @@ const UserUpdate = () => {
         <div className="text-white text-center">
           This user has no QR Code. <br />
           you can delete and create new user.
-          </div>
+        </div>
       </div>
     );
+    user_download = "";
   } else {
     user_qrcode = <img src={user.qrcode} className="img-fluid" />;
+    user_download = (
+      <a
+        href={user.qrcode}
+        download="qrcode-mservice.metrosystems-des.png"
+        className="btn btn-primary border-0"
+        style={{
+          color: "#fff",
+          backgroundColor: colors.blueAccent[600],
+          boxShadow: "none",
+          padding: "8px 2em",
+        }}
+      >
+        Download QR Code
+      </a>
+    );
   }
 
   const savedTime = user.created_at;
@@ -102,6 +119,24 @@ const UserUpdate = () => {
     year: "numeric",
   });
   console.log(formatedDate);
+
+  let ucheck_in = "";
+  let savedTime1 = user.checked_in;
+  let formatedDate1 = new Date(savedTime1).toLocaleString();
+  if (formatedDate1 === "1/1/1970, 7:00:00 AM") {
+    ucheck_in = <span>Unchecked in</span>;
+  } else {
+    ucheck_in = formatedDate1;
+  }
+
+  let ucheck_out = "";
+  let savedTime2 = user.checked_out;
+  let formatedDate2 = new Date(savedTime2).toLocaleString();
+  if (formatedDate2 === "1/1/1970, 7:00:00 AM") {
+    ucheck_out = <span>Unchecked out</span>;
+  } else {
+    ucheck_out = formatedDate2;
+  }
 
   return (
     <div className="app">
@@ -114,20 +149,6 @@ const UserUpdate = () => {
               <span className="h1 span-h1">Register Infomation</span>
               <span className="span-user-id">User ID : {id}</span>
             </div>
-            {/* <div className="col-lg-6 col-md-12 right-button-header">
-              <Button
-                href="./RegisterAdmin"
-                variant="contained"
-                style={{
-                  color: "#fff",
-                  backgroundColor: colors.blueAccent[600],
-                  boxShadow: "none",
-                  padding: "8px 2em",
-                }}
-              >
-                Print QR Code
-              </Button>
-            </div> */}
           </div>
 
           <div className="row w-100">
@@ -298,21 +319,7 @@ const UserUpdate = () => {
             <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 mt-4">
               <div className="card border-0 shadow-sm p-4 d-flex">
                 <div className="img-wrapper">{user_qrcode}</div>
-                <div className="text-center mt-3">
-                <a
-                href={user.qrcode}
-                download="qrcode-mservice.metrosystems-des.png"
-                className="btn btn-primary border-0"
-                style={{
-                  color: "#fff",
-                  backgroundColor: colors.blueAccent[600],
-                  boxShadow: "none",
-                  padding: "8px 2em",
-                }}
-              >
-                Download QR Code
-              </a>
-                </div>
+                <div className="text-center mt-3">{user_download}</div>
                 <span
                   style={{
                     textAlign: "center",
@@ -322,6 +329,17 @@ const UserUpdate = () => {
                 >
                   Created: {formatedDate}
                 </span>
+              </div>
+
+              <div className="card border-0 shadow-sm p-4 d-flex my-4">
+                <div className="row p-0">
+                  <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">Checked in : </div>
+                  <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">{ucheck_in}</div>
+                </div>
+                <div className="row p-0">
+                  <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">Checked out : </div>
+                  <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">{ucheck_out}</div>
+                </div>
               </div>
             </div>
           </div>
