@@ -85,7 +85,7 @@ const Dashboard = () => {
         <Topbar setIsSidebar={setIsSidebar} />
         <Box m="30px">
           <div className="row w-100">
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-2">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2">
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">
                 <div className="d-flex justify-content-between">
                   <div>
@@ -109,7 +109,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-2">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2">
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">
                 <div className="d-flex justify-content-between">
                   <div>
@@ -133,7 +133,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-2">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2">
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">
                 <div className="d-flex justify-content-between">
                   <div>
@@ -157,7 +157,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-2">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2">
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">
                 <div className="d-flex justify-content-between">
                   <div>
