@@ -211,7 +211,7 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["Total_Users","Checked_in","Checked_out", "Male", "Female"]}
+      keys={["Total_Users","Checked_in","Checked_out",]}
       indexBy="statistic"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
