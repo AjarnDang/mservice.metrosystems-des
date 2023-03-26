@@ -185,14 +185,14 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="row w-100">
-            <div className="col-xl-8 col-lg-8 col-md-12 col-xs-12 mt-4">
+            <div className="col-xl-8 col-lg-12 col-md-12 col-xs-12 mt-4">
               <div className="card border-0 shadow-sm py-5 px-3">
                 <Box height="600px" width="100%" mt="-20px">
                   <BarChart isDashboard={true} />
                 </Box>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-8 col-md-12 col-xs-12 mt-4">
+            <div className="col-xl-4 col-lg-12 col-md-12 col-xs-12 mt-4">
               <div className="card border-0 shadow-sm py-5 px-3">
                 <Box height="600px" width="100%" mt="-20px">
                   <PieChart isDashboard={true} />
