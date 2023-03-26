@@ -54,56 +54,56 @@ const BarChart = ({ isDashboard = false }) => {
     countAllUserRegtoday();
   }, []);
 
-  //Fecth all user if male
-  const [userCountMr, setUserCountMr] = useState(0);
-  useEffect(() => {
-    const countAllUserMr = async () => {
-      try {
-        const res = await axios.get(
-          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mr"
-        );
-        setUserCountMr(res.data.count);
-        console.log(res.data.count);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    countAllUserMr();
-  }, []);
+  // //Fecth all user if male
+  // const [userCountMr, setUserCountMr] = useState(0);
+  // useEffect(() => {
+  //   const countAllUserMr = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mr"
+  //       );
+  //       setUserCountMr(res.data.count);
+  //       console.log(res.data.count);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   countAllUserMr();
+  // }, []);
 
-  //Fecth all user if Female 1
-  const [userCountMrs, setUserCountMrs] = useState(0);
-  useEffect(() => {
-    const countAllUserMrs = async () => {
-      try {
-        const res = await axios.get(
-          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mrs"
-        );
-        setUserCountMrs(res.data.count);
-        console.log(res.data.count);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    countAllUserMrs();
-  }, []);
+  // //Fecth all user if Female 1
+  // const [userCountMrs, setUserCountMrs] = useState(0);
+  // useEffect(() => {
+  //   const countAllUserMrs = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mrs"
+  //       );
+  //       setUserCountMrs(res.data.count);
+  //       console.log(res.data.count);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   countAllUserMrs();
+  // }, []);
 
-  //Fecth all user if Female 2
-  const [userCountMs, setUserCountMs] = useState(0);
-  useEffect(() => {
-    const countAllUserMs = async () => {
-      try {
-        const res = await axios.get(
-          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_ms"
-        );
-        setUserCountMs(res.data.count);
-        console.log(res.data.count);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    countAllUserMs();
-  }, []);
+  // //Fecth all user if Female 2
+  // const [userCountMs, setUserCountMs] = useState(0);
+  // useEffect(() => {
+  //   const countAllUserMs = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_ms"
+  //       );
+  //       setUserCountMs(res.data.count);
+  //       console.log(res.data.count);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   countAllUserMs();
+  // }, []);
 
   const mockBarData = [
     {
@@ -127,21 +127,20 @@ const BarChart = ({ isDashboard = false }) => {
       Checked_out: userUnActive,
       Checked_outColor: "hsl(326, 70%, 50%)",
     },
-    {
-      statistic: "Male",
-      "hot dog": 55,
-      "hot dogColor": "hsl(307, 70%, 50%)",
-      Male: userCountMr,
-      MaleColor: "hsl(111, 70%, 50%)",
-    },
-    {
-      statistic: "Female",
-      "hot dog": 109,
-      "hot dogColor": "hsl(72, 70%, 50%)",
-      Female: userCountMrs + userCountMs,
-      FemaleColor: "hsl(106, 70%, 50%)",
-    },
-    
+    // {
+    //   statistic: "Male",
+    //   "hot dog": 55,
+    //   "hot dogColor": "hsl(307, 70%, 50%)",
+    //   Male: userCountMr,
+    //   MaleColor: "hsl(111, 70%, 50%)",
+    // },
+    // {
+    //   statistic: "Female",
+    //   "hot dog": 109,
+    //   "hot dogColor": "hsl(72, 70%, 50%)",
+    //   Female: userCountMrs + userCountMs,
+    //   FemaleColor: "hsl(106, 70%, 50%)",
+    // }, 
     // {
     //   statistic: "AI",
     //   "hot dog": 81,
