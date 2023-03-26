@@ -147,7 +147,7 @@ function AdminProfile() {
                 />
               </div>
               <div className="col-xl-7 col-lg-8 col-md-9 col-sm-12 ml-auto d-flex align-items-center text-truncate">
-                <div>
+                <div className="text-black">
                   <small>Admin ID : {admin.id}</small>
                   <h2>{admin.username}</h2>
                   <h5>{admin.fname} {admin.lname}</h5>
@@ -158,7 +158,7 @@ function AdminProfile() {
 
           <div className="card border-0 shadow-sm mt-4">
             <div className="card-header bg-white p-3">
-              <div className="row">
+              <div className="row text-black">
                 <div className="col-xl-6 col-md-12 text-start">
                   <h5 className="pb-0 mb-0">General Infomation</h5>
                 </div>
@@ -168,7 +168,7 @@ function AdminProfile() {
               </div>
               
             </div>
-            <div className="card-body">
+            <div className="card-body text-black">
             <Form>
               <Row className="mb-3">
                 <Col lg={6} md={12} sm={12}>
