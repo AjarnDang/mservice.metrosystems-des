@@ -1,14 +1,83 @@
+import React, { useState, useEffect } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
-import { mockPieData as data } from "../data/mockData";
+// import { mockPieData as data } from "../data/mockData";
+import axios from "axios";
 
 const PieChart = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  //Fecth all user if male
+  const [userCountMr, setUserCountMr] = useState(0);
+  useEffect(() => {
+    const countAllUserMr = async () => {
+      try {
+        const res = await axios.get(
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mr"
+        );
+        setUserCountMr(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUserMr();
+  }, []);
+
+  //Fecth all user if Female 1
+  const [userCountMrs, setUserCountMrs] = useState(0);
+  useEffect(() => {
+    const countAllUserMrs = async () => {
+      try {
+        const res = await axios.get(
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_mrs"
+        );
+        setUserCountMrs(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUserMrs();
+  }, []);
+
+  //Fecth all user if Female 2
+  const [userCountMs, setUserCountMs] = useState(0);
+  useEffect(() => {
+    const countAllUserMs = async () => {
+      try {
+        const res = await axios.get(
+          "https://charming-goat-flannel-nightgown.cyclic.app/countallusers_ms"
+        );
+        setUserCountMs(res.data.count);
+        console.log(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    countAllUserMs();
+  }, []);
+
+  const mockPieData = [
+  {
+    id: "Male",
+    label: "Male",
+    value: userCountMr,
+    color: "hsl(104, 70%, 50%)",
+  },
+  {
+    id: "Female",
+    label: "Female",
+    value: userCountMrs+userCountMs,
+    color: "hsl(162, 70%, 50%)",
+  },
+];
+
   return (
     <ResponsivePie
-      data={data}
+      data={mockPieData}
       theme={{
         axis: {
           domain: {

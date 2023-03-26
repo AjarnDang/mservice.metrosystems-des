@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Box, useTheme } from "@mui/material";
 import { tokens } from "../theme";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
 import axios from "axios";
-
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
 import BarChart from "../components/BarChart";
+import PieChart from "../components/PieChart";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -190,6 +189,13 @@ const Dashboard = () => {
               <div className="card border-0 shadow-sm py-5 px-3">
                 <Box height="600px" width="100%" mt="-20px">
                   <BarChart isDashboard={true} />
+                </Box>
+              </div>
+            </div>
+            <div className="col-xl-4 col-lg-12 col-xs-12 mt-4">
+              <div className="card border-0 shadow-sm py-5 px-3">
+                <Box height="600px" width="100%" mt="-20px">
+                  <PieChart isDashboard={true} />
                 </Box>
               </div>
             </div>
