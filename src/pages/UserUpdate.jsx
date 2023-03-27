@@ -143,7 +143,14 @@ const UserUpdate = () => {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="20px">
+        <Box 
+          m="20px"
+          sx={{
+            "& .card": {
+            backgroundColor: `${colors.grey[900]} !important`,
+            }
+          }}
+        >
           <div className="row w-100">
             <div className="col-lg-6 col-md-12 mb-2">
               <span className="h1 span-h1">Register Infomation</span>
@@ -154,7 +161,7 @@ const UserUpdate = () => {
           <div className="row w-100">
             <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 mt-4">
               <div className="card border-0 shadow-sm p-4">
-                <Form style={{ color: "#000" }} onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Col lg={2} md={12} sm={12}>
                       <Form.Group controlId="formBasicTitle">
