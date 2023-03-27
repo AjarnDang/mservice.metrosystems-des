@@ -92,7 +92,7 @@ const UserAdd = () => {
           </div>
 
           <div className="card border-0 shadow-sm p-4">
-            <Form className="form-bg-white" onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <Row className="mb-3">
                 <Col lg={2} md={12} sm={12}>
                   <Form.Group controlId="formBasicTitle">
