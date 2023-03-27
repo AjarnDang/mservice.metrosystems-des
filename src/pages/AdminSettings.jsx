@@ -107,7 +107,7 @@ function AdminSettings() {
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
         <Box m="20px">
-          <div className="row my-4">
+          <div className="row my-4 w-100">
             <div className="col-lg-6 col-md-12 mb-2">
               <span className="h1 span-h1">Admin Panel</span>
             </div>
@@ -171,7 +171,7 @@ function AdminSettings() {
             </div>
           </div> */}
 
-          <div className="card border-0 shadow-sm">
+          <div className="card border-0 shadow-sm w-100">
             <Paper sx={{ width: "100%", overflow: "hidden", height: "auto" }}>
               <TableContainer sx={{ maxHeight: 685 }}>
                 <Table stickyHeader aria-label="sticky table">
