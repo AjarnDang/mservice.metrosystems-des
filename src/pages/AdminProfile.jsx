@@ -131,7 +131,14 @@ function AdminProfile() {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="20px">
+        <Box 
+          m="20px"
+          sx={{
+            "& .card": {
+            backgroundColor: `${colors.grey[900]} !important`,
+            }
+          }}
+          >
           <div className="card p-4 border-0 shadow-sm">
             <div className="row">
               <div className="col-xl-2 col-lg-3 col-md-4 col-sm-12">
@@ -157,7 +164,7 @@ function AdminProfile() {
           </div>
 
           <div className="card border-0 shadow-sm mt-4">
-            <div className="card-header bg-white p-3">
+            <div className="card-header p-3">
               <div className="row text-black">
                 <div className="col-xl-6 col-md-12 text-start">
                   <h5 className="pb-0 mb-0">General Infomation</h5>
