@@ -3,10 +3,17 @@ import { tokens } from "../theme";
 import { Box, Button, useTheme } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
-
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import LaunchIcon from "@mui/icons-material/Launch";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
@@ -52,16 +59,54 @@ function AdminSettings() {
     }
   };
 
-  // num is converted to a number then incremented.
-  var num = "0";
-  num++;
+  const columns = [
+    {
+      field: "id",
+      label: "#",
+      renderCell: ({ row: { id } }) => {
+        return (
+          <Link
+            to={{ pathname: "adminupdate/" + admin.id }}
+            style={{ textDecoration: "none", color: colors.grey[100] }}
+          >
+            {id}{" "}
+            <LaunchIcon
+              style={{ opacity: "0.5", margin: "0 0 10px 5px", width: "13px" }}
+            />
+          </Link>
+        );
+      },
+    },
+    { field: "username", label: "Username", flex: 0, type: "number" },
+    {
+      field: "fullname",
+      label: "Full Name",
+      flex: 0,
+      cellClassName: "name-column--cell",
+    },
+    { field: "email", label: "Email", flex: 1 },
+    { field: "created_at", label: "Created", flex: 0 },
+    { field: "action", label: "Action", flex: 1 },
+  ];
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   return (
     <div className="app">
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="30px">
+        <Box m="20px">
           <div className="row my-4">
             <div className="col-lg-6 col-md-12 mb-2">
               <span className="h1 span-h1">Admin Panel</span>
@@ -73,7 +118,7 @@ function AdminSettings() {
               </Button>
             </div>
           </div>
-          <div className="card border-0 shadow-sm p-4">
+          {/* <div className="card border-0 shadow-sm p-4">
             <div className="all-admin" key={admin.id}>
               <table className="table table-borderless">
                 <thead>
@@ -124,6 +169,89 @@ function AdminSettings() {
                 )})}
               </table>
             </div>
+          </div> */}
+
+          <div className="card border-0 shadow-sm">
+            <Paper sx={{ width: "100%", overflow: "hidden", height: "auto" }}>
+              <TableContainer sx={{ maxHeight: 685 }}>
+                <Table stickyHeader aria-label="sticky table">
+                  <TableHead>
+                    <TableRow>
+                      {columns.map((column) => (
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          style={{ minWidth: column.minWidth }}
+                        >
+                          {column.label}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody key={admin.id}>
+                    {admin
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                      .map((admin, index) => {
+                        const savedTime = admin.created_at;
+                        const formatedDate = new Date(savedTime).toLocaleString("en-US", {
+                          month: "short",
+                          day: "2-digit",
+                          year: "numeric",
+                        });
+                        return (
+                          <TableRow>
+                            <TableCell>
+                              {rowsPerPage * page + 1 + index}
+                            </TableCell>
+                            <TableCell>{admin.username}</TableCell>
+                            <TableCell>
+                              {admin.fname} {admin.lname}
+                            </TableCell>
+                            <TableCell>{admin.email}</TableCell>
+                            <TableCell>{formatedDate}</TableCell>
+
+                            <TableCell style={{ minWidth: "170px" }}>
+                              <button
+                                className="edit-button btn btn-warning"
+                                style={{ marginRight: "7px" }}
+                              >
+                                <Link
+                                  to={{ pathname: "/AdminUpdate/" + admin.id }}
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "#000",
+                                  }}
+                                >
+                                  Edit
+                                </Link>
+                              </button>
+                              <button
+                                className="delete-button btn btn-danger"
+                                onClick={() => handleDelete(admin.id)}
+                              >
+                                Delete
+                              </button>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={admin.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </Paper>
           </div>
         </Box>
       </main>

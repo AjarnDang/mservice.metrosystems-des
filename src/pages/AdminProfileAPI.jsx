@@ -54,7 +54,7 @@ function AdminProfileAPI() {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="30px">
+        <Box m="20px">
           <div class="card border-0 shadow-sm">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Profile</h6>

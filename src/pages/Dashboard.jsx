@@ -83,7 +83,7 @@ const Dashboard = () => {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="30px">
+        <Box m="20px">
           <div className="row w-100">
             <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2">
               <div className="card align-item-center border-0 shadow-sm py-5 px-3">

@@ -131,7 +131,7 @@ function AdminProfile() {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="30px">
+        <Box m="20px">
           <div className="card p-4 border-0 shadow-sm">
             <div className="row">
               <div className="col-xl-2 col-lg-3 col-md-4 col-sm-12">

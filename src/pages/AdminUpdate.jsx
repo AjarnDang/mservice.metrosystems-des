@@ -84,7 +84,14 @@ function AdminUpdate() {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="30px">
+        <Box 
+        m="20px"
+        sx={{
+          "& .card": {
+          backgroundColor: `${colors.grey[900]} !important`,
+          }
+        }}
+        >
           <div className="row my-4">
             <div className="col-lg-6 col-md-12">
               <h1>Admin Panel</h1>

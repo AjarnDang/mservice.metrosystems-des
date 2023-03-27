@@ -93,9 +93,8 @@ function QrCodeGenerator() {
                     <>
                       <img
                         src={qrcode}
-                        width="500px"
+                        width="100%" style={{border:"1px solid #000", borderRadius:"5px"}}
                         className="border-1"
-                        style={{ border: "1px solid black" }}
                       />
                       <br />
                       <a
