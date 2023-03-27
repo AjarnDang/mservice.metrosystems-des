@@ -44,7 +44,10 @@ const UserAdd = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("https://charming-goat-flannel-nightgown.cyclic.app/useradd2", user);
+      await axios.post(
+        "https://charming-goat-flannel-nightgown.cyclic.app/useradd2",
+        user
+      );
       navigate("/userinfomation");
       MySwal.fire({
         html: <i>User has been added successfully!</i>,
@@ -53,10 +56,10 @@ const UserAdd = () => {
         window.location.reload();
       });
     } catch (err) {
-        MySwal.fire({
+      MySwal.fire({
         html: <i>Fail to add User!</i>,
         icon: "error",
-        })
+      });
     }
   };
 
@@ -65,7 +68,14 @@ const UserAdd = () => {
       <Sidebar isSidebar={isSidebar} />
       <main className="content">
         <Topbar setIsSidebar={setIsSidebar} />
-        <Box m="20px">
+        <Box
+          m="20px"
+          sx={{
+            "& .card": {
+              backgroundColor: `${colors.grey[900]} !important`,
+            },
+          }}
+        >
           <div className="row my-4">
             <div className="col-lg-6 col-md-12">
               <h1>Registration</h1>
@@ -86,17 +96,10 @@ const UserAdd = () => {
               <Row className="mb-3">
                 <Col lg={2} md={12} sm={12}>
                   <Form.Group controlId="formBasicTitle">
-                    <Form.Label
-                      className="label mt-2"
-                      style={{ color: "#000" }}
-                    >
+                    <Form.Label className="label mt-2">
                       Title <span className="text-danger">*</span>
                     </Form.Label>
-                    <Form.Select 
-                      name="title" 
-                      onChange={handleChange}
-                      required
-                      >
+                    <Form.Select name="title" onChange={handleChange} required>
                       <option>Choose Title</option>
                       <option value="Mr.">Mr.</option>
                       <option value="Mrs.">Mrs.</option>
@@ -106,10 +109,7 @@ const UserAdd = () => {
                 </Col>
                 <Col lg={5} md={12} sm={12}>
                   <Form.Group controlId="formBasicFirstname">
-                    <Form.Label
-                      className="label mt-2"
-                      style={{ color: "#000" }}
-                    >
+                    <Form.Label className="label mt-2">
                       First name <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -123,10 +123,7 @@ const UserAdd = () => {
                 </Col>
                 <Col lg={5} md={12} sm={12}>
                   <Form.Group controlId="formBasicLastname">
-                    <Form.Label
-                      className="label mt-2"
-                      style={{ color: "#000" }}
-                    >
+                    <Form.Label className="label mt-2">
                       Last Name <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -142,10 +139,7 @@ const UserAdd = () => {
 
               <Row className="mb-3">
                 <Col lg={4} md={12} sm={12}>
-                  <Form.Group
-                    controlId="formBasicAge"
-                    style={{ color: "#000" }}
-                  >
+                  <Form.Group controlId="formBasicAge">
                     <Form.Label className="label mt-2">Age</Form.Label>
                     <Form.Control
                       type="number"
@@ -157,10 +151,7 @@ const UserAdd = () => {
                 </Col>
                 <Col lg={4} md={12} sm={12}>
                   <Form.Group controlId="formBasicPhone">
-                    <Form.Label
-                      className="label mt-2"
-                      style={{ color: "#000" }}
-                    >
+                    <Form.Label className="label mt-2">
                       Phone <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -176,10 +167,7 @@ const UserAdd = () => {
                 </Col>
                 <Col lg={4} md={12} sm={12}>
                   <Form.Group controlId="formBasicEmail">
-                    <Form.Label
-                      className="label mt-2"
-                      style={{ color: "#000" }}
-                    >
+                    <Form.Label className="label mt-2">
                       Email <span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -191,15 +179,11 @@ const UserAdd = () => {
                     />
                   </Form.Group>
                 </Col>
-                
               </Row>
 
               <Row className="mb-3">
                 <Col lg={6} md={12} sm={12}>
-                  <Form.Group
-                    controlId="formBasicJobTitle"
-                    style={{ color: "#000" }}
-                  >
+                  <Form.Group controlId="formBasicJobTitle">
                     <Form.Label className="label mt-2">
                       Job Title <span className="text-danger">*</span>
                     </Form.Label>
@@ -212,10 +196,7 @@ const UserAdd = () => {
                   </Form.Group>
                 </Col>
                 <Col lg={6} md={12} sm={12}>
-                  <Form.Group
-                    controlId="formBasicCompany"
-                    style={{ color: "#000" }}
-                  >
+                  <Form.Group controlId="formBasicCompany">
                     <Form.Label className="label mt-2">
                       Company <span className="text-danger">*</span>
                     </Form.Label>
@@ -233,12 +214,7 @@ const UserAdd = () => {
               <Row className="mb-3">
                 <Col>
                   <Form.Group controlId="formBasicTitle">
-                    <Form.Label
-                      className="label mt-2"
-                      style={{ color: "#000" }}
-                    >
-                      Description
-                    </Form.Label>
+                    <Form.Label className="label mt-2">Description</Form.Label>
                     <Form.Control
                       as="textarea"
                       rows={8}
