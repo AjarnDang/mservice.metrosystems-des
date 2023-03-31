@@ -48,6 +48,10 @@ html, body, #root, .App, .content {
   width: 100%;
 }
 
+.qrcode-image {
+  width: 500px;
+}
+
 @media only screen and (max-width: 993px) {
   .right-button-header {
     text-align: left;
@@ -66,6 +70,9 @@ html, body, #root, .App, .content {
   }
   .img-fluid {
     width: 60%;
+  }
+  .qrcode-image {
+    width: 100%;
   }
 }
 

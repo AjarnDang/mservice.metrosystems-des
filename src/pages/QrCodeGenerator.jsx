@@ -65,7 +65,7 @@ function QrCodeGenerator() {
     <body className="signup-body">
       <div className="container">
         <div className="signup-form d-flex align-items-center justify-content-center">
-          <div className="card border-0 my-4">
+          <div className="card border-0 my-5">
             <h1 className="text-center text-white font-weight-bolder">
               QR Code Generator
             </h1>
@@ -93,8 +93,8 @@ function QrCodeGenerator() {
                     <>
                       <img
                         src={qrcode}
-                        width="70%" style={{border:"1px solid #000", borderRadius:"5px"}}
-                        className="border-1"
+                        style={{border:"1px solid #000", borderRadius:"5px"}}
+                        className="qrcode-image border-1"
                       />
                       <br />
                       <a
