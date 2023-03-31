@@ -112,7 +112,7 @@ const UserInfomation = () => {
         <Box m="20px">
           <div className="row my-4">
             <div className="col-lg-6 col-md-12 mb-2">
-              <h1>Registration Infomation</h1>
+              <h1>User Infomation</h1>
             </div>
             <div className="col-lg-6 col-md-12 right-button-header">
               <Button

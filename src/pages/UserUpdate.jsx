@@ -153,7 +153,7 @@ const UserUpdate = () => {
         >
           <div className="row w-100">
             <div className="col-lg-6 col-md-12 mb-2">
-              <span className="h1 span-h1">Register Infomation</span>
+              <span className="h1 span-h1">User Infomation</span>
               <span className="span-user-id">User ID : {id}</span>
             </div>
           </div>
